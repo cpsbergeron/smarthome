@@ -10,7 +10,24 @@
     "files": [
         "README.md",
         "main.blocks",
-        "main.ts"
+        "main.ts",
+        "home_1.md",
+        "home_2.md",
+        "home_3.md",
+        "home_4.md",
+        "home_5.md",
+        "home_6.md",
+        "home_7.md",
+        "home_8.md",
+        "home_9.md",
+        "home_10.md",
+        "home_11.md",
+        "home_12.md",
+        "home_13.md",
+        "home_14.md",
+        "home_15.md",
+        "home_a.md",
+        "home_b.md"
     ],
     "testFiles": [
         "test.ts"
@@ -23,5 +40,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
