@@ -41,7 +41,7 @@ if (true && true) {
 }
 OLED.writeStringNewLine("Celsius")
 OLED.writeNumNewLine(Celsius)
-if (true || true) {
+if (0 < 0) {
 	
 }
 strip.showColor(neopixel.colors(NeoPixelColors.Black))
