@@ -29,7 +29,8 @@
         "home_a.md",
         "home_b.md",
         "tutorial-info-cache.json",
-        "v2.md"
+        "v2.md",
+        "home_16.md"
     ],
     "testFiles": [
         "test.ts"
