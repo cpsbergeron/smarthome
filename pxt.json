@@ -28,7 +28,8 @@
         "home_15.md",
         "home_a.md",
         "home_b.md",
-        "tutorial-info-cache.json"
+        "tutorial-info-cache.json",
+        "v2.md"
     ],
     "testFiles": [
         "test.ts"
