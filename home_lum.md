@@ -8,28 +8,7 @@ Utilise l'écran OLED, les capteurs, le bouclier d'extension et les câbles.
 
 ## Étape 1
 
-Ajoute le bloc ``||LED:activer LED||`` dans le bloc ``||basic:au démarrage||``.
-
-La valeur ``||logic:faux||`` du bloc ``||LED:activer LED||`` demeure la même.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-led.enable(false)
-basic.forever(function () {
-	
-})
-
-```
-
-## Étape 2
-
-Ajoute le bloc ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran) sous le bloc ``||LED:activer LED||``.
+Ajoute le bloc ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran).
 
 Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
@@ -41,7 +20,6 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 ```blocks
 
-led.enable(false)
 OLED.init(128, 64)
 basic.forever(function () {
 	
@@ -49,11 +27,11 @@ basic.forever(function () {
 
 ```
 
-## Étape 3
+## Étape 2
 
-Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:LED||``.
+Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Lumen||``.
 
-Ajoute le bloc ``||variables: définir LED ||`` dans le bloc ``||basic: toujours ||``.
+Ajoute le bloc ``||variables: définir Lumen ||`` dans le bloc ``||basic: toujours ||``.
 
 Remplace la valeur ``||variables:0||`` par le bloc ``||input:niveau d'intensité lumineuse||``.
 
@@ -65,8 +43,6 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 ```blocks
 
-let LED = 0
-led.enable(false)
 OLED.init(128, 64)
 basic.forever(function () {
     LED = input.lightLevel()
@@ -76,9 +52,9 @@ basic.forever(function () {
 
 ```
 
-## Étape 5
+## Étape 3
 
-Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir LED ||``.
+Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Lumen ||``.
 
 ```package
 
@@ -88,17 +64,15 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 ```blocks
 
-let LED = 0
-led.enable(false)
 OLED.init(128, 64)
 basic.forever(function () {
-    LED = input.lightLevel()
+    Lumen = input.lightLevel()
     OLED.clear()
 })
 
 ```
 
-## Étape 6
+## Étape 4
 
 Ajoute le bloc ``||OLED:show number||`` (trad. : montrer le nombre) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
 
@@ -112,8 +86,6 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 ```blocks
 
-let LED = 0
-led.enable(false)
 OLED.init(128, 64)
 basic.forever(function () {
     LED = input.lightLevel()
@@ -123,7 +95,7 @@ basic.forever(function () {
 
 ```
 
-## Étape 7
+## Étape 5
 
 Ajoute le bloc ``||basic:pause (ms)||`` sous le bloc ``||OLED: show number ||`` (trad. : montrer nombre).
 
@@ -137,8 +109,6 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 ```blocks
 
-let LED = 0
-led.enable(false)
 OLED.init(128, 64)
 basic.forever(function () {
     LED = input.lightLevel()
@@ -151,7 +121,7 @@ basic.forever(function () {
 
 ```
 
-## Étape 8
+## Étape 6
 
 Voici la programmation complète du programme.
 
@@ -163,8 +133,6 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 ```blocks
 
-let LED = 0
-led.enable(false)
 OLED.init(128, 64)
 basic.forever(function () {
     LED = input.lightLevel()
