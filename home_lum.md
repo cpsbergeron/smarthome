@@ -45,7 +45,7 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 OLED.init(128, 64)
 basic.forever(function () {
-    LED = input.lightLevel()
+    Lumen = input.lightLevel()
 })
 
 
@@ -76,7 +76,7 @@ basic.forever(function () {
 
 Ajoute le bloc ``||OLED:show number||`` (trad. : montrer le nombre) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
 
-Remplace la valeur ``||OLED:0||`` par le bloc ``||variables: LED ||``.
+Remplace la valeur ``||OLED:0||`` par le bloc ``||variables: Lumen ||``.
 
 ```package
 
@@ -88,9 +88,9 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 OLED.init(128, 64)
 basic.forever(function () {
-    LED = input.lightLevel()
+    Lumen = input.lightLevel()
     OLED.clear()
-    OLED.writeNumNewLine(LED)
+    OLED.writeNumNewLine(Lumen)
 })
 
 ```
@@ -111,9 +111,9 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 OLED.init(128, 64)
 basic.forever(function () {
-    LED = input.lightLevel()
+    Lumen = input.lightLevel()
     OLED.clear()
-    OLED.writeNumNewLine(LED)
+    OLED.writeNumNewLine(Lumen)
     basic.pause(3000)
 })
 
@@ -135,9 +135,9 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 OLED.init(128, 64)
 basic.forever(function () {
-    LED = input.lightLevel()
+    Lumen = input.lightLevel()
     OLED.clear()
-    OLED.writeNumNewLine(LED)
+    OLED.writeNumNewLine(Lumen)
     basic.pause(3000)
 })
 
