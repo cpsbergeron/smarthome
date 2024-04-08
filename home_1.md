@@ -18,7 +18,7 @@ Cette séquence de programmation permet de désactiver les lumières LEDs du mic
 
 ```package
 
-dstemps=github:tinkertanker/pxt-smarthome
+tinkertanker/pxt-smarthome
 
 ```
 
