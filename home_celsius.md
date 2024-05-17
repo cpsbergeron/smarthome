@@ -10,7 +10,7 @@ Utilise l'écran OLED, les capteurs, le bouclier d'extension et les câbles.
 
 Ajoute le bloc ``||LED:activer LED||`` dans le bloc ``||basic:au démarrage||``.
 
-La valeur ``||logic:faux||`` du bloc ``||LED:activer LED||`` demeure la même.
+La valeur ``||logic:faux||`` demeure la même.
 
 ```package
 

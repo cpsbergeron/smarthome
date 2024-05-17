@@ -8,7 +8,7 @@ Invente une programmation. Les blocs ont été placés dans le désordre.
 
 ## Étape 1
 
-Utilise le plus de blocs possibles.
+Utilise le plus de blocs possible.
 
 Bonne chance !
 

@@ -30,8 +30,6 @@
         "home_b.md",
         "tutorial-info-cache.json",
         "home_celsius.md",
-        "v2.md",
-        "home_16.md",
         "home_lum.md"
     ],
     "testFiles": [
@@ -39,7 +37,7 @@
     ],
     "public": true,
     "targetVersions": {
-        "target": "6.0.25",
+        "target": "6.0.28",
         "targetId": "microbit"
     },
     "supportedTargets": [

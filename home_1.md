@@ -78,9 +78,9 @@ basic.forever(function () {
 
 ## Étape 4
 
-Remplace la valeur ``||OLED: " " ||`` du bloc ``||OLED: show string ||`` (trad. : montrer la ligne) par ton prénom (sans accent).
+Remplace la valeur ``||OLED: " " ||`` du bloc ``||OLED: show string ||`` (trad. : montrer la ligne) par ton prénom **(sans accent)**.
 
-Exemple : Marc-Andre au lieu de Marc-André.
+** Exemple : Marc-Andre au lieu de Marc-André. **
 
 ```package
 
