@@ -36,11 +36,6 @@ Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
 Les valeurs ``||OLED: 128 ||`` et ``||OLED: 64 ||`` sont les dimensions (en pixels) de l'écran.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
@@ -61,11 +56,6 @@ Remplace la valeur ``||neopixel:  24 ||`` par  ``||neopixel:  1 ||``.
 
 La valeur ``||neopixel:  RGB ||`` demeure la même.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
@@ -81,12 +71,6 @@ let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 Ajoute le bloc ``||neopixel:  régler couleur||`` sous le bloc ``||variables:  définir strip ||`` (trad. : bande lumineuse).
 
 Remplace la valeur ``||neopixel:  rouge ||`` par la valeur ``||neopixel:  noir||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
@@ -106,11 +90,6 @@ Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||basic: touj
 
 Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
@@ -133,12 +112,6 @@ La valeur ``||smarthome:C||`` demeure la même.
 
 Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P2||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 let Celsius = 0
@@ -156,11 +129,6 @@ basic.forever(function () {
 
 Ajoute le bloc ``||logic:si vrai alors ||`` sous le bloc ``||variables: définir Celsius ||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
@@ -188,12 +156,6 @@ Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||
 
 Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:21||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 let Celsius = 0
@@ -216,12 +178,6 @@ Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:si||``.
 
 Modifie la valeur ``||neopixel: rouge ||`` par la valeur ``||neopixel: jaune ||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 let Celsius = 0
@@ -242,12 +198,6 @@ basic.forever(function () {
 ## Étape 10
 
 Ajoute le bloc ``||logic:si vrai alors ||`` sous le bloc ``||logic: si vrai alors ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
@@ -279,12 +229,6 @@ Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||logic:0 > 0||``.
 
 Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:0 < 0||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 let Celsius = 0
@@ -312,12 +256,6 @@ Modifie le bloc ``||logic:0 > 0||``.
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
 
 Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:22||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
@@ -347,12 +285,6 @@ Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||
 
 Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:25||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 let Celsius = 0
@@ -378,12 +310,6 @@ Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:si||``.
 
 Modifie la valeur ``||neopixel: rouge ||`` par la valeur ``||neopixel: orange ||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 let Celsius = 0
@@ -406,12 +332,6 @@ basic.forever(function () {
 ## Étape 15
 
 Ajoute le bloc ``||logic:si vrai alors ||`` sous le bloc ``||logic: si vrai alors ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
@@ -445,12 +365,6 @@ Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||
 
 Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:26||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 let Celsius = 0
@@ -480,12 +394,6 @@ Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:si||``.
 
 La valeur ``||neopixel: rouge ||`` demeure la même.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 let Celsius = 0
@@ -508,50 +416,69 @@ basic.forever(function () {
 
 ```
 
+
 ## Étape 18
 
-Ajoute le bloc ``||OLED: clear display ||`` (trad. : effacer l'écran) dans le bloc ``||input: lorsque le bouton A est pressé ||``.
+Glisse le bloc ``||loops: chaque 500 ms||`` dans la zone de programmation.
 
-Ajoute le bloc ``||OLED: show string ||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear display ||``.
-
-Ajoute le bloc ``||OLED: show number ||`` (trad. : montrer le nombre) sous le bloc ``||OLED: show string ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||loops: 500||`` par ``||loops: 2000||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("")
-    OLED.writeNumNewLine(0)
+loops.everyInterval(2000, function () {
+	
 })
 
 ```
 
 ## Étape 19
 
-Remplace la valeur ``||OLED: " " ||`` du bloc ``||OLED: show string ||`` (trad. : montrer la ligne) par le mot ``||OLED: Celsius ||``.
-
-Remplace la valeur ``||OLED: 0 ||`` du bloc ``||OLED: show number ||`` (trad. : montrer nombre) par le bloc ``||variables: Celsius ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Celsius ||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    let Celsius = 0
+loops.everyInterval(2000, function () {
     OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
 })
+
+```
+
+## Étape 8
+
+Ajoute le bloc ``||OLED:show string||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
+
+Remplace la valeur ``||OLED:" "||`` par le bloc ``||text: concaténation ||``.
+
+```blocks
+
+loops.everyInterval(2000, function () {
+    OLED.clear()
+    OLED.writeStringNewLine("Bonjour" + "Monde")
+})
+
+```
+
+## Étape 9
+
+Modifie le bloc ``||text: concaténation ||``.
+
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
+
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Celsius ||``.
+
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
+
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Celcius||``.
+
+
+```blocks
+
+let Celsius = 0
+loops.everyInterval(2000, function () {
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+})
+
 
 ```
 
@@ -561,16 +488,15 @@ Voici la programmation complète du programme.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
-})
 let Celsius = 0
 led.enable(false)
 OLED.init(128, 64)
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 strip.showColor(neopixel.colors(NeoPixelColors.Black))
+loops.everyInterval(2000, function () {
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+})
 basic.forever(function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     if (Celsius < 21) {
@@ -583,6 +509,7 @@ basic.forever(function () {
         strip.showColor(neopixel.colors(NeoPixelColors.Red))
     }
 })
+
 
 
 ```
