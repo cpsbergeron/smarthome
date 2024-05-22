@@ -1,6 +1,6 @@
 # ElecFreaks micro:bit Smart Home Kit
 
-# Tutoriel 4
+# Tutoriel 3
 
 ## @showdialog
 
@@ -33,12 +33,6 @@ Ajoute le bloc ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran) sous 
 
 Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
@@ -53,41 +47,31 @@ basic.forever(function () {
 
 Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Lumen||``.
 
-Ajoute le bloc ``||variables: définir Lumen ||`` dans le bloc ``||basic: toujours ||``.
+Ajoute le bloc ``||variables: définir Lumen ||`` dans le bloc ``||loops: chaque 500 ms||``.
 
-Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of intensity||`` (trad. : la valeur du niveau d'intensité lumineuse).
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of light||`` (trad. : la valeur de la luminosité).
 
 ```blocks
 
 let Lumen = 0
-basic.forever(function () {
+loops.everyInterval(500, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
 })
+
 
 ```
 
 ## Étape 4
 
-Modifie le bloc ``||smarthome:value of intensity||`` (trad. : la valeur du niveau d'intensité lumineuse).
+Modifie le bloc ``||smarthome:value of light||`` (trad. : la valeur de la luminosité).
 
 Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P3||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
 let Lumen = 0
-basic.forever(function () {
+loops.everyInterval(500, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
 })
 
@@ -95,91 +79,88 @@ basic.forever(function () {
 
 ## Étape 5
 
-Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Lumen ||``.
+Modifie le bloc ``||loops: chaque 500 ms||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||loops: 500||`` par ``||loops: 2000||``.
 
 ```blocks
 
 let Lumen = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    OLED.clear()
 })
 
 ```
 
 ## Étape 6
 
-Ajoute le bloc ``||OLED:show number||`` (trad. : montrer le nombre) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
-
-Remplace la valeur ``||OLED:0||`` par le bloc ``||variables: Lumen ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Lumen ||``.
 
 ```blocks
 
 let Lumen = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     OLED.clear()
-    OLED.writeNumNewLine(Lumen)
 })
 
 ```
 
 ## Étape 7
 
-Ajoute le bloc ``||basic:pause (ms)||`` sous le bloc ``||OLED: show number ||`` (trad. : montrer nombre).
+Ajoute le bloc ``||OLED:show string||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
 
-Remplace la valeur ``||basic:100||`` par le bloc ``||basic:3000||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||OLED:" "||`` par le bloc ``||text: concaténation ||``.
 
 ```blocks
 
 let Lumen = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     OLED.clear()
-    OLED.writeNumNewLine(Lumen)
-    basic.pause(3000)
+    OLED.writeStringNewLine("Bonjour" + "Monde")
 })
+
 
 ```
 
 ## Étape 8
 
-Voici la programmation complète du programme.
+Modifie le bloc ``||text: concaténation ||``.
 
-```package
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
 
-dstemps=github:tinkertanker/pxt-smarthome
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Lumen ||``.
 
-```
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
+
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Lumen||``.
+
 
 ```blocks
 
 let Lumen = 0
-led.enable(false)
-OLED.init(128, 64)
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     OLED.clear()
-    OLED.writeNumNewLine(Lumen)
-    basic.pause(3000)
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
+})
+
+```
+
+## Étape 9
+
+Voici la programmation complète du programme.
+
+```blocks
+
+let Lumen = 0
+OLED.init(128, 64)
+led.enable(false)
+loops.everyInterval(2000, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
 })
 
 ```

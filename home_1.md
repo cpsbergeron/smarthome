@@ -16,6 +16,12 @@ Certaines broches (ex. :  P3, P4, P6, etc.) sont utilisées par le micro:bit pou
 
 Cette séquence de programmation permet de désactiver les lumières LEDs du micro:bit pour les utiliser avec le bouclier d'extension.
 
+```package
+
+dstemps=github:tinkertanker/pxt-smarthome
+
+```
+
 ```blocks
 
 led.enable(false)
@@ -126,12 +132,6 @@ basic.forever(function () {
     basic.pause(2000)
 })
 
-
-```
-
-```package
-
-tinkertanker/pxt-smarthome
 
 ```
 

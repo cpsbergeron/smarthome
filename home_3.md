@@ -33,12 +33,6 @@ Ajoute le bloc ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran) sous 
 
 Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
@@ -53,22 +47,17 @@ basic.forever(function () {
 
 Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Celsius||``.
 
-Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||basic: toujours ||``.
+Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||loops: chaque 500 ms||``.
 
 Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
+loops.everyInterval(500, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P1)
 })
+
 
 ```
 
@@ -80,16 +69,11 @@ La valeur ``||smarthome:C||`` demeure la même.
 
 Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P2||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
+loops.everyInterval(500, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
 })
 
@@ -97,91 +81,87 @@ basic.forever(function () {
 
 ## Étape 5
 
-Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Celsius ||``.
+Modifie le bloc ``||loops: chaque 500 ms||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||loops: 500||`` par ``||loops: 2000||``.
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    OLED.clear()
 })
 
 ```
 
 ## Étape 6
 
-Ajoute le bloc ``||OLED:show number||`` (trad. : montrer le nombre) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
-
-Remplace la valeur ``||OLED:0||`` par le bloc ``||variables: Celsius ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Celsius ||``.
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     OLED.clear()
-    OLED.writeNumNewLine(Celsius)
 })
 
 ```
 
 ## Étape 7
 
-Ajoute le bloc ``||basic:pause (ms)||`` sous le bloc ``||OLED: show number ||`` (trad. : montrer nombre).
+Ajoute le bloc ``||OLED:show string||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
 
-Remplace la valeur ``||basic:100||`` par le bloc ``||basic:3000||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||OLED:" "||`` par le bloc ``||text: concaténation ||``.
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     OLED.clear()
-    OLED.writeNumNewLine(Celsius)
-    basic.pause(3000)
+    OLED.writeStringNewLine("Bonjour" + "Monde")
 })
 
 ```
 
 ## Étape 8
 
-Voici la programmation complète du programme.
+Modifie le bloc ``||text: concaténation ||``.
 
-```package
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
 
-dstemps=github:tinkertanker/pxt-smarthome
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Celsius ||``.
 
-```
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
+
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Celcius||``.
+
 
 ```blocks
 
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     OLED.clear()
-    OLED.writeNumNewLine(Celsius)
-    basic.pause(3000)
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+})
+
+```
+
+## Étape 10
+
+Voici la programmation complète du programme.
+
+```blocks
+
+let Celsius = 0
+OLED.init(128, 64)
+led.enable(false)
+loops.everyInterval(2000, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
 })
 
 ```
