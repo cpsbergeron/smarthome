@@ -16,12 +16,6 @@ Certaines broches (ex. :  P3, P4, P6, etc.) sont utilisées par le micro:bit pou
 
 Cette séquence de programmation permet de désactiver les lumières LEDs du micro:bit pour les utiliser avec le bouclier d'extension.
 
-```package
-
-tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
@@ -39,18 +33,11 @@ Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
 Les valeurs ``||OLED: 128 ||`` et ``||OLED: 64 ||`` sont les dimensions (en pixels) de l'écran.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
 OLED.init(128, 64)
 basic.forever(function () {
-	
 })
 
 ```
@@ -61,11 +48,6 @@ Ajoute le bloc ``||OLED: clear OLED ||`` (trad. : effacer l'écran) dans le bloc
 
 Ajoute le bloc ``||OLED: show string ||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED ||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
@@ -78,66 +60,78 @@ basic.forever(function () {
 
 ## Étape 4
 
-Remplace la valeur ``||OLED: " " ||`` du bloc ``||OLED: show string ||`` (trad. : montrer la ligne) par ton prénom **(sans accent)**.
+Ajoute le bloc ``||text: concétanation ||`` dans le bloc ``||OLED: show string ||`` (trad. : montrer la ligne).
 
-** Exemple : Marc-Andre au lieu de Marc-André. **
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
 basic.forever(function () {
     OLED.clear()
-    OLED.writeStringNewLine("Marc-Andre")
+    OLED.writeStringNewLine("Bonjour" + "Monde" + "")
 })
 
 ```
 
 ## Étape 5
 
-Ajoute le bloc ``||basic: pause (ms)||`` sous le bloc ``||OLED: show string ||``.
+Remplace les valeurs du bloc ``||text: concétanation ||``.
 
-Remplace la valeur  ``||basic: 100||`` du bloc ``||basic: pause (ms)||`` par ``||basic: 5000||``.
+Remplace le premier espace par ton ``||text: prénom ||``.
 
-```package
+Laisse le deuxième espace vide.
 
-dstemps=github:tinkertanker/pxt-smarthome
+Remplace le troisième espace par ton nom de ``||text: nom de famille ||``.
 
-```
+** Exemple : Sebastien au lieu de Sébastien. **
+
 
 ```blocks
 
 basic.forever(function () {
     OLED.clear()
-    OLED.writeStringNewLine("Marc-Andre")
-    basic.pause(5000)
+    OLED.writeStringNewLine("Sebastien" + "" + "Bergeron")
 })
 
 ```
 
 ## Étape 6
 
-Voici la programmation complète du programme.
+Ajoute le bloc ``||basic: pause (ms)||`` sous le bloc ``||OLED: show string ||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur  ``||basic: 100||`` du bloc ``||basic: pause (ms)||`` par ``||basic: 2000||``.
 
 ```blocks
 
-led.enable(false)
-OLED.init(128, 64)
 basic.forever(function () {
     OLED.clear()
-    OLED.writeStringNewLine("Marc-Andre")
-    basic.pause(5000)
+    OLED.writeStringNewLine("Sebastien" + "" + "Bergeron")
+    basic.pause(2000)
 })
+
+```
+
+## Étape 7
+
+Voici la programmation complète du programme.
+
+```blocks
+
+OLED.init(128, 64)
+led.enable(false)
+basic.forever(function () {
+    OLED.clear()
+    OLED.writeStringNewLine("Sebastien" + "" + "Bergeron")
+    basic.pause(2000)
+})
+
+
+```
+
+```package
+
+tinkertanker/pxt-smarthome
 
 ```
 
