@@ -1,6 +1,6 @@
 {
     "name": "smarthome",
-    "version": "2.0.10",
+    "version": "2.0.11",
     "description": "",
     "dependencies": {
         "core": "*",
