@@ -1,6 +1,6 @@
 # ElecFreaks micro:bit Smart Home Kit
 
-# Tutoriel 7
+# Tutoriel 6
 
 ## @showdialog
 
@@ -39,12 +39,6 @@ Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
 Les valeurs ``||OLED: 128 ||`` et ``||OLED: 64 ||`` sont les dimensions (en pixels) de l'écran.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
@@ -67,12 +61,6 @@ Remplace la valeur ``||neopixel:  24 ||`` par  ``||neopixel:  1 ||``.
 
 La valeur ``||neopixel:  RGB ||`` demeure la même.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
@@ -88,22 +76,14 @@ basic.forever(function () {
 
 Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Lumen||``.
 
-Ajoute le bloc ``||variables: définir Lumen ||`` dans le bloc ``||basic: toujours ||``.
+Ajoute le bloc ``||variables: définir Lumen ||`` dans le bloc ``||loops: chaque 500 ms ||``.
 
-Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of light intensity||`` (trad. : le niveau d'intensité lumineuse).
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of light||`` (trad. : la valeur de la luminosité).
 
 ```blocks
+
 let Lumen = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
+loops.everyInterval(500, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
 })
 
@@ -111,23 +91,14 @@ basic.forever(function () {
 
 ## Étape 5
 
-Modifie le bloc ``||smarthome:value of light intensity||`` (trad. : le niveau d'intensité lumineuse).
+Modifie le bloc ``||smarthome:value of light||`` (trad. : la valeur de la luminosité).
 
 Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P3||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
 let Lumen = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
+loops.everyInterval(500, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
 })
 
@@ -135,22 +106,83 @@ basic.forever(function () {
 
 ## Étape 6
 
-Ajoute le bloc ``||logic:si vrai alors sinon||`` sous le bloc ``||variables: définir Lumen ||``.
+Modifie le bloc ``||loops: chaque 500 ms||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||loops: 500||`` par ``||loops: 2000||``.
 
 ```blocks
 
 let Lumen = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+})
+
+```
+
+## Étape 7
+
+Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Lumen ||``.
+
+```blocks
+
+let Lumen = 0
+loops.everyInterval(500, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+})
+
+```
+
+## Étape 8
+
+Ajoute le bloc ``||OLED:show string||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
+
+Remplace la valeur ``||OLED:" "||`` par le bloc ``||text: concaténation ||``.
+
+```blocks
+
+let Lumen = 0
+loops.everyInterval(500, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Bonjour" + "Monde")
+})
+
+```
+
+## Étape 9
+
+Modifie le bloc ``||text: concaténation ||``.
+
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
+
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Lumen ||``.
+
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
+
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Lumen||``.
+
+
+```blocks
+
+let Lumen = 0
+loops.everyInterval(500, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
+})
+
+
+```
+
+## Étape 10
+
+Ajoute le bloc ``||logic:si vrai alors sinon||`` dans le bloc ``||basic: toujours ||``.
+
+
+```blocks
+
+basic.forever(function () {
     if (true) {
     	
     } else {
@@ -160,161 +192,61 @@ basic.forever(function () {
 
 ```
 
-## Étape 7
+## Étape 11
 
 Modifie le bloc ``||logic:si vrai alors sinon||``.
 
-Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 < 0||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 < 40||``.
 
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Lumen||``.
 
 Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:40||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
 let Lumen = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     if (Lumen < 40) {
     	
     } else {
     	
     }
-})
-
-```
-
-## Étape 8
-
-Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:si||``.
-
-La valeur ``||neopixel: rouge ||`` demeure la même.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-let Lumen = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Lumen < 40) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Red))
-    } else {
-    	
-    }
-})
-
-```
-
-## Étape 9
-
-Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:  sinon ||``.
-
-Remplace la valeur ``||neopixel:  rouge ||`` par la valeur ``||neopixel:  noir ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-let Lumen = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Lumen < 40) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Red))
-    } else {
-        strip.showColor(neopixel.colors(NeoPixelColors.Black))
-    }
-})
-
-```
-
-## Étape 10
-
-Ajoute le bloc ``||OLED: clear OLED ||`` (trad. : effacer l'écran) dans le bloc ``||input:lorsque le bouton A est pressé||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-})
-
-```
-
-## Étape 11
-
-Ajoute le bloc ``||OLED: show number ||`` (trad. : montrer le nombre) sous le bloc ``||OLED: clear OLED ||`` (trad. : effacer écran).
-
-Remplace la valeur ``||OLED: 0 ||`` par le bloc ``||variables:Lumen||``.
-
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-input.onButtonPressed(Button.A, function () {
-    let Lumen = 0
-    OLED.clear()
-    OLED.writeNumNewLine(Lumen)
 })
 
 ```
 
 ## Étape 12
 
-Voici la programmation complète du programme.
+Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:si||``.
 
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+La valeur ``||neopixel: rouge ||`` demeure la même.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeNumNewLine(Lumen)
-})
-let Lumen = 0
-led.enable(false)
-OLED.init(128, 64)
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    let Lumen = 0
+    if (Lumen < 40) {
+        strip.showColor(neopixel.colors(NeoPixelColors.Red))
+    } else {
+    	
+    }
+})
+
+```
+
+## Étape 13
+
+Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:  sinon ||``.
+
+Remplace la valeur ``||neopixel:  rouge ||`` par la valeur ``||neopixel:  noir ||``.
+
+```blocks
+
+let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
+basic.forever(function () {
+    let Lumen = 0
     if (Lumen < 40) {
         strip.showColor(neopixel.colors(NeoPixelColors.Red))
     } else {
@@ -322,8 +254,35 @@ basic.forever(function () {
     }
 })
 
+
 ```
 
+## Étape 14
+
+Voici la programmation complète du programme.
+
+
+```blocks
+
+let Lumen = 0
+let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
+led.enable(false)
+OLED.init(128, 64)
+loops.everyInterval(500, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
+})
+basic.forever(function () {
+    if (Lumen < 40) {
+        strip.showColor(neopixel.colors(NeoPixelColors.Red))
+    } else {
+        strip.showColor(neopixel.colors(NeoPixelColors.Black))
+    }
+})
+
+
+```
 ## @showdialog 
 
 Félicitations! Tu as terminé la programmation. Réalise maintenant les branchements.
