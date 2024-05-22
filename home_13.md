@@ -25,6 +25,9 @@ dstemps=github:tinkertanker/pxt-smarthome
 ```blocks
 
 led.enable(false)
+basic.forever(function () {
+	
+})
 
 ```
 
@@ -36,84 +39,60 @@ Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
 Les valeurs ``||OLED: 128 ||`` et ``||OLED: 64 ||`` sont les dimensions (en pixels) de l'écran.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
 OLED.init(128, 64)
+basic.forever(function () {
+	
+})
 
 ```
 
 ## Étape 3
 
-Ajoute le bloc ``|| pins: écrire sur la broche ||``  sous le bloc  ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran).
+Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Celsius||``.
 
-Modifie le bloc ``|| pins: écrire sur la broche ||``.
+Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||loops: chaque 500 ms ||``.
 
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P12 ||``.
-
-La valeur ``|| pins: 0 ||`` du bloc ``|| pins: écrire sur la broche ||`` demeure la même.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
 
 ```blocks
 
-led.enable(false)
-OLED.init(128, 64)
-pins.digitalWritePin(DigitalPin.P12, 0)
+let Celsius = 0
+loops.everyInterval(500, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P1)
+})
 
 ```
 
 ## Étape 4
 
-Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Celsius||``.
+Modifie le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
 
-Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||basic: toujours ||``.
+La valeur ``||smarthome:C||`` demeure la même.
 
-Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P2||``.
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P0)
+loops.everyInterval(500, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
 })
 
 ```
 
 ## Étape 5
 
-Modifie le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
+Modifie le bloc ``||loops: chaque 500 ms||``.
 
-La valeur ``||smarthome:C||`` demeure la même.
-
-Remplace la valeur ``||smarthome:P0||`` par ``||smarthome:P2||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||loops: 500||`` par ``||loops: 2000||``.
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
 })
 
@@ -121,114 +100,72 @@ basic.forever(function () {
 
 ## Étape 6
 
-Ajoute le bloc ``||logic:si vrai alors sinon||`` sous le bloc ``||variables: définir Celsius ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
+Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Celsius ||``.
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    if (true) {
-        
-    } else {
-        
-    }
+    OLED.clear()
 })
 
 ```
 
 ## Étape 7
 
-Modifie le bloc ``||logic:si vrai alors sinon||``.
+Ajoute le bloc ``||OLED:show string||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
 
-Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 > 0||``.
-
-Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
-
-Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:25||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||OLED:" "||`` par le bloc ``||text: concaténation ||``.
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    if (Celsius > 25) {
-        
-    } else {
-        
-    }
+    OLED.clear()
+    OLED.writeStringNewLine("Bonjour" + "Monde")
 })
 
 ```
 
 ## Étape 8
 
-Ajoute le bloc ``|| pins: écrire sur la broche ||``  dans le bloc  ``|| logic: si alors ||``.
+Modifie le bloc ``||text: concaténation ||``.
 
-Modifie le bloc ``|| pins: écrire sur la broche ||``.
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
 
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P12 ||``.
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Celsius ||``.
 
-Remplace la valeur ``|| pins: 0 ||`` par ``|| pins : 1 ||``.
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
 
-```package
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Celcius||``.
 
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
 let Celsius = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    if (Celsius > 25) {
-        pins.digitalWritePin(DigitalPin.P12, 1)
-    } else {
-        
-    }
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
 })
+
 
 ```
 
 ## Étape 9
 
-Ajoute le bloc ``|| pins: écrire sur la broche ||``  dans le bloc  ``|| logic: sinon ||``.
+Ajoute le bloc ``||logic:si vrai alors sinon||`` dans le bloc ``||basic: toujours ||``.
 
-Modifie le bloc ``|| pins: écrire sur la broche ||``.
-
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P12 ||``.
-
-Remplace la valeur ``|| pins: 0 ||`` par ``|| pins : 0 ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
-let Celsius = 0
 basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    if (Celsius > 25) {
-        pins.digitalWritePin(DigitalPin.P12, 1)
+    if (true) {
+    	
     } else {
-        pins.digitalWritePin(DigitalPin.P12, 0)
+    	
     }
 })
 
@@ -236,79 +173,90 @@ basic.forever(function () {
 
 ## Étape 10
 
-Ajoute le bloc ``||OLED: clear display ||`` (trad. : effacer l'écran) dans le bloc ``||input: lorsque le bouton A est pressé ||``.
+Modifie le bloc ``||logic:si vrai alors sinon||``.
 
-Ajoute le bloc ``||OLED: show string ||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear display ||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 > 0||``.
 
-Ajoute le bloc ``||OLED: show number ||`` (trad. : montrer le nombre) sous le bloc ``||OLED: show string ||``.
+Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
 
-```package
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:20||``.
 
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("")
-    OLED.writeNumNewLine(0)
+let Celsius = 0
+basic.forever(function () {
+    if (Celsius > 20) {
+    	
+    } else {
+    	
+    }
 })
 
 ```
 
 ## Étape 11
 
-Remplace la valeur ``||OLED: " " ||`` du bloc ``||OLED: show string ||`` (trad. : montrer la ligne) par le mot ``||OLED: Celsius ||``.
+Ajoute le bloc``|| pins: écrire sur la broche ||`` dans le bloc ``||logic:si||``.
 
-Remplace la valeur ``||OLED: 0 ||`` du bloc ``||OLED: show number ||`` (trad. : montrer nombre) par le bloc ``||variables: Celsius ||``.
+Remplace la valeur ``|| pins: P0 ||`` par ``|| pins: P16 ||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``|| pins: 0 ||`` par ``|| pins: 1 ||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    let Celsius = 0
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
+let Celsius = 0
+basic.forever(function () {
+    if (Celsius > 20) {
+        pins.digitalWritePin(DigitalPin.P16, 1)
+    } else {
+    	
+    }
 })
 
 ```
 
 ## Étape 12
 
-Voici la programmation complète du programme.
+Ajoute le bloc``|| pins: écrire sur la broche ||`` dans le bloc ``||logic:sinon||``.
 
-```package
+Remplace la valeur ``|| pins: P0 ||`` par ``|| pins: P16 ||``.
 
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+La valeur ``|| pins: 0 ||`` demeure la même.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    let Celsius = 0
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
+let Celsius = 0
+basic.forever(function () {
+    if (Celsius > 20) {
+        pins.digitalWritePin(DigitalPin.P16, 1)
+    } else {
+        pins.digitalWritePin(DigitalPin.P16, 0)
+    }
 })
+
+```
+
+## Étape 13
+
+Voici la programmation complète du programme.
+
+
+```blocks
+
 let Celsius = 0
 led.enable(false)
 OLED.init(128, 64)
-pins.digitalWritePin(DigitalPin.P12, 0)
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    if (Celsius < 25) {
-        pins.digitalWritePin(DigitalPin.P12, 1)
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+})
+basic.forever(function () {
+    if (Celsius > 20) {
+        pins.digitalWritePin(DigitalPin.P16, 1)
     } else {
-        pins.digitalWritePin(DigitalPin.P12, 0)
+        pins.digitalWritePin(DigitalPin.P16, 0)
     }
 })
 

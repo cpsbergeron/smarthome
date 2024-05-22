@@ -1,6 +1,6 @@
 # ElecFreaks micro:bit Smart Home Kit
 
-# Tutoriel 14
+# Tutoriel 13
 
 ## @showdialog
 
@@ -25,6 +25,9 @@ dstemps=github:tinkertanker/pxt-smarthome
 ```blocks
 
 led.enable(false)
+basic.forever(function () {
+	
+})
 
 ```
 
@@ -36,105 +39,127 @@ Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
 Les valeurs ``||OLED: 128 ||`` et ``||OLED: 64 ||`` sont les dimensions (en pixels) de l'écran.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
 OLED.init(128, 64)
+basic.forever(function () {
+	
+})
 
 ```
 
 ## Étape 3
 
+Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Lumen||``.
 
-Ajoute le bloc ``|| pins: régler position servo ||``  sous le bloc  ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran).
+Ajoute le bloc ``||variables: définir Lumen ||`` dans le bloc ``||loops: chaque 500 ms ||``.
 
-Modifie le bloc ``|| pins: régler position servo ||``.
-
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P8 ||``.
-
-Remplace la valeur ``|| pins: 180 ||`` par ``|| pins: 0 ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value light||`` (trad. : la valeur de la luminosité).
 
 ```blocks
 
-led.enable(false)
-OLED.init(128, 64)
-pins.servoWritePin(AnalogPin.P8, 0)
+let Lumen = 0
+loops.everyInterval(500, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
+})
 
 ```
 
 ## Étape 4
 
-Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Lumen||``.
+Modifie le bloc ``||smarthome:value light||`` (trad. : la valeur de la luminosité).
 
-Ajoute le bloc ``||variables: définir Lumen ||`` dans le bloc ``||basic: toujours ||``.
-
-Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of light intensity||`` (trad. : la valeur du niveau de l'intensité lumineuse).
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P3||``.
 
 ```blocks
 
 let Lumen = 0
-basic.forever(function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
+loops.everyInterval(500, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
 })
 
 ```
 
 ## Étape 5
 
-Modifie le bloc ``||smarthome:value of light intensity||`` (trad. : la valeur du niveau de l'intensité lumineuse)..
+Modifie le bloc ``||loops: chaque 500 ms||``.
 
-
-Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P3||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||loops: 500||`` par ``||loops: 2000||``.
 
 ```blocks
 
 let Lumen = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
 })
-
 
 ```
 
 ## Étape 6
 
-Ajoute le bloc ``||logic:si vrai alors sinon||`` sous le bloc ``||variables: définir Lumen ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Lumen ||``.
 
 ```blocks
 
 let Lumen = 0
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+})
+
+```
+
+## Étape 7
+
+Ajoute le bloc ``||OLED:show string||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
+
+Remplace la valeur ``||OLED:" "||`` par le bloc ``||text: concaténation ||``.
+
+```blocks
+
+let Lumen = 0
+loops.everyInterval(2000, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Bonjour" + "Monde")
+})
+
+```
+
+## Étape 8
+
+Modifie le bloc ``||text: concaténation ||``.
+
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
+
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Lumen ||``.
+
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
+
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Lumen||``.
+
+
+```blocks
+
+let Lumen = 0
+loops.everyInterval(2000, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
+})
+
+
+```
+
+## Étape 9
+
+Ajoute le bloc ``||logic:si vrai alors sinon||`` dans le bloc ``||basic: toujours ||``.
+
+
+```blocks
+
+basic.forever(function () {
     if (true) {
     	
     } else {
@@ -144,170 +169,89 @@ basic.forever(function () {
 
 ```
 
-## Étape 7
+## Étape 10
 
 Modifie le bloc ``||logic:si vrai alors sinon||``.
 
-Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 > 0||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 < 0||``.
 
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Lumen||``.
 
-Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:50||``.
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:100||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
 let Lumen = 0
 basic.forever(function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Lumen > 50) {
+    if (Lumen < 100) {
     	
     } else {
     	
     }
-})
-
-
-```
-
-## Étape 8
-
-Ajoute le bloc ``|| pins: régler position servo ||``  dans le bloc  ``|| logic: si alors ||``.
-
-Modifie le bloc ``|| pins: régler position servo ||``.
-
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P8 ||``.
-
-La valeur ``|| pins: 180 ||`` du bloc ``|| pins: régler position servo ||`` demeure la même.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-let Lumen = 0
-basic.forever(function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Lumen > 50) {
-        pins.servoWritePin(AnalogPin.P8, 180)
-    } else {
-    	
-    }
-})
-
-```
-
-## Étape 9
-
-Ajoute le bloc ``|| pins: écrire sur la broche ||``  dans le bloc  ``|| logic: sinon ||``.
-
-Modifie le bloc ``|| pins: écrire sur la broche ||``.
-
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P8 ||``.
-
-Remplace la valeur ``|| pins: 180 ||`` par ``|| pins : 0 ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-let Lumen = 0
-basic.forever(function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Lumen > 50) {
-        pins.servoWritePin(AnalogPin.P8, 180)
-    } else {
-        pins.servoWritePin(AnalogPin.P8, 0)
-    }
-})
-
-
-```
-
-## Étape 10
-
-Ajoute le bloc ``||OLED: clear display ||`` (trad. : effacer l'écran) dans le bloc ``||input: lorsque le bouton A est pressé ||``.
-
-Ajoute le bloc ``||OLED: show string ||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear display ||``.
-
-Ajoute le bloc ``||OLED: show number ||`` (trad. : montrer le nombre) sous le bloc ``||OLED: show string ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("")
-    OLED.writeNumNewLine(0)
 })
 
 ```
 
 ## Étape 11
 
-Remplace la valeur ``||OLED: " " ||`` du bloc ``||OLED: show string ||`` (trad. : montrer la ligne) par le mot ``||OLED: Lumen ||``.
+Ajoute le bloc ``|| pins: régler position du servo ||`` dans le bloc ``||logic:si||``.
 
-Remplace la valeur ``||OLED: 0 ||`` du bloc ``||OLED: show number ||`` (trad. : montrer nombre) par le bloc ``||variables: Lumen ||``.
+Remplace la valeur ``|| pins: P0 ||`` par ``|| pins: P8 ||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+La valeur ``|| pins: 180 ||`` demeure la même.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    let Lumen = 0
-    OLED.clear()
-    OLED.writeStringNewLine("Lumen")
-    OLED.writeNumNewLine(Lumen)
+let Lumen = 0
+basic.forever(function () {
+    if (Lumen < 100) {
+        pins.servoWritePin(AnalogPin.P8, 180)
+    } else {
+    	
+    }
 })
 
 ```
 
 ## Étape 12
 
-Voici la programmation complète du programme.
+Ajoute le bloc ``|| pins: régler position du servo ||`` dans le bloc ``||logic:sinon||``.
 
+Remplace la valeur ``|| pins: P0 ||`` par ``|| pins: P8 ||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``|| pins: 180 ||`` par ``|| pins: 0 ||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("Lumen")
-    OLED.writeNumNewLine(Lumen)
+let Lumen = 0
+basic.forever(function () {
+    if (Lumen < 100) {
+        pins.servoWritePin(AnalogPin.P8, 180)
+    } else {
+        pins.servoWritePin(AnalogPin.P8, 0)
+    }
 })
+
+```
+
+## Étape 13
+
+Voici la programmation complète du programme.
+
+
+```blocks
+
 let Lumen = 0
 led.enable(false)
 OLED.init(128, 64)
-pins.servoWritePin(AnalogPin.P8, 0)
+loops.everyInterval(2000, function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
+    OLED.clear()
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
+})
 basic.forever(function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Lumen > 50) {
+    if (Lumen < 100) {
         pins.servoWritePin(AnalogPin.P8, 180)
     } else {
         pins.servoWritePin(AnalogPin.P8, 0)
