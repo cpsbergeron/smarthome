@@ -11,6 +11,12 @@ Utilise l'écran OLED, les capteurs, le bouclier d'extension et les câbles.
 
 Supprime le bloc ``||basic:toujours||``.
 
+```package
+
+dstemps=github:tinkertanker/pxt-smarthome
+
+```
+
 ## Étape 2
 
 Ajoute le bloc ``|| pins: écrire sur la broche ||`` dans le bloc ``||basic:au démarrage||``.
@@ -25,85 +31,84 @@ pins.digitalWritePin(DigitalPin.P0, 0)
 
 Modifie le bloc ``|| pins: écrire sur la broche ||``.
 
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P12 ||``.
+Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P16 ||``.
 
 La valeur ``|| pins: 0 ||`` demeure la même.
 
 ```blocks
 
-pins.digitalWritePin(DigitalPin.P12, 0)
+pins.digitalWritePin(DigitalPin.P16, 0)
 
 ```
 
 ## Étape 4
 
-Ajoute le bloc pause ``|| basic: pause (ms) ||`` dans le bloc ``||input:lorsque le bouton A est pressé||``.
+Ajoute le bloc ``||smarthome:setup crash sensor||`` (trad. : paramétrer le capteur d'impact) sous le bloc ``|| pins: écrire sur la broche ||``.
 
-La valeur ``|| basic: 100 ||`` du bloc ``|| basic: pause (ms) ||`` demeure la même.
-
-Ajoute le bloc ``|| pins: écrire sur la broche ||``  sous le bloc  ``|| basic: pause (ms) ||``.
+Remplace la valeur ``||smarthome:P0||`` par ``||smarthome:P5||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    basic.pause(100)
-    pins.digitalWritePin(DigitalPin.P0, 0)
-})
-
+pins.digitalWritePin(DigitalPin.P16, 1)
+smarthome.crashSensorSetup(DigitalPin.P5)
 
 ```
 
 ## Étape 5
 
-Modifie le bloc ``|| pins: écrire sur la broche ||``.
+Ajoute le bloc ``||logic:si vrai alors sinon||`` dans le bloc ``|| basic: toujours ||``.
 
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P12 ||``.
-
-Remplace la valeur ``|| pins: 0 ||`` par ``|| pins : 1 ||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||smarthome:crash sensor pressed||`` (trad. : capteur d'impact pressé).
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    basic.pause(100)
-    pins.digitalWritePin(DigitalPin.P12, 1)
+basic.forever(function () {
+    if (smarthome.crashSensor()) {
+    	
+    } else {
+    	
+    }
 })
-
 
 ```
 
 ## Étape 6
 
-Ajoute le bloc pause ``|| basic: pause (ms) ||`` dans le bloc ``||input:lorsque le bouton B est pressé||``.
+Ajoute le bloc ``|| pins: écrire sur la broche ||`` dans le bloc ``||logic:si||``.
 
-La valeur ``|| basic: 100 ||`` du bloc ``|| basic: pause (ms) ||`` demeure la même.
+Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P16 ||``.
 
-Ajoute le bloc ``|| pins: écrire sur la broche ||``  sous le bloc  ``|| basic: pause (ms) ||``.
+Remplace la broche ``|| pins: 0 ||`` par ``|| pins : 1 ||``.
 
 ```blocks
 
-input.onButtonPressed(Button.B, function () {
-    basic.pause(100)
-    pins.digitalWritePin(DigitalPin.P0, 0)
+basic.forever(function () {
+    if (smarthome.crashSensor()) {
+        pins.digitalWritePin(DigitalPin.P16, 1)
+    } else {
+    	
+    }
 })
-
 
 ```
 
 ## Étape 7
 
-Modifie le bloc ``|| pins: écrire sur la broche ||``.
+Ajoute le bloc ``|| pins: écrire sur la broche ||`` dans le bloc ``||logic:sinon||``.
 
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P12 ||``.
+Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P16 ||``.
 
 La valeur ``|| pins: 0 ||`` demeure la même.
 
 ```blocks
 
-input.onButtonPressed(Button.B, function () {
-    basic.pause(100)
-    pins.digitalWritePin(DigitalPin.P12, 0)
+basic.forever(function () {
+    if (smarthome.crashSensor()) {
+        pins.digitalWritePin(DigitalPin.P16, 1)
+    } else {
+        pins.digitalWritePin(DigitalPin.P16, 0)
+    }
 })
-
 
 ```
 
@@ -111,23 +116,17 @@ input.onButtonPressed(Button.B, function () {
 
 Voici la programmation complète du programme.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    basic.pause(100)
-    pins.digitalWritePin(DigitalPin.P12, 1)
+pins.digitalWritePin(DigitalPin.P16, 1)
+smarthome.crashSensorSetup(DigitalPin.P5)
+basic.forever(function () {
+    if (smarthome.crashSensor()) {
+        pins.digitalWritePin(DigitalPin.P16, 1)
+    } else {
+        pins.digitalWritePin(DigitalPin.P16, 0)
+    }
 })
-input.onButtonPressed(Button.B, function () {
-    basic.pause(100)
-    pins.digitalWritePin(DigitalPin.P12, 0)
-})
-pins.digitalWritePin(DigitalPin.P12, 0)
 
 ```
 
