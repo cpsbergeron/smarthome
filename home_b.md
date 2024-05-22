@@ -20,42 +20,21 @@ dstemps=github:tinkertanker/pxt-smarthome
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-	
-})
-input.onButtonPressed(Button.AB, function () {
-	
-})
-input.onButtonPressed(Button.B, function () {
-	
-})
 let strip: neopixel.Strip = null
 let Celsius = 0
 let Lumen = 0
+OLED.clear()
 led.enable(false)
 OLED.init(128, 64)
-OLED.clear()
-OLED.drawLoading(Lumen)
-if (true && true) {
-	
-}
-OLED.writeStringNewLine("Celsius")
-OLED.writeNumNewLine(Celsius)
-if (0 < 0) {
-	
-}
-strip.showColor(neopixel.colors(NeoPixelColors.Black))
-basic.pause(100)
-music.play(music.tonePlayable(988, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
-music.setVolume(100)
-strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-basic.forever(function () {
-	
+OLED.writeStringNewLine("Bonjour" + "Monde")
+loops.everyInterval(500, function () {
+    basic.pause(100)
 })
-loops.everyInterval(1000 * 5, function () {
-	
+basic.forever(function () {
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P1)
+    strip = neopixel.create(DigitalPin.P0, 1, NeoPixelMode.RGB)
+    strip.showColor(neopixel.colors(NeoPixelColors.Red))
 })
 
 ```
