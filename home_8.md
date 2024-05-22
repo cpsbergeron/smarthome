@@ -25,139 +25,93 @@ dstemps=github:tinkertanker/pxt-smarthome
 ```blocks
 
 led.enable(false)
-basic.forever(function () {
-	
-})
 
 ```
 
 ## Étape 2
 
-Ajoute le bloc ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran) sous le bloc ``||LED:activer LED||``.
+Ajoute le bloc ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran) sous le bloc ``||LED:activer LED||``
 
 Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
 Les valeurs ``||OLED: 128 ||`` et ``||OLED: 64 ||`` sont les dimensions (en pixels) de l'écran.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
 OLED.init(128, 64)
-basic.forever(function () {
-	
-})
 
 ```
 
 ## Étape 3
 
-Ajoute le bloc ``||variables:  définir strip ||`` (trad. : bande lumineuse) de l'onglet ``||neopixel:  neopixel ||`` sous le bloc ``||OLED: initialize OLED ||``.
-
-Modifie le bloc ``||variables:  définir strip ||``.
+Ajoute le bloc ``||variables:  définir strip ||`` (trad. : bande lumineuse) de l'onglet ``||neopixel:  neopixel ||`` sous le bloc ``||LED:activer LED||``.
 
 Remplace la valeur ``||neopixel:  P0 ||`` par ``||neopixel:  P1 ||``.
 
-Remplace la valeur ``||neopixel:  24 ||`` par  ``||neopixel:  1 ||``.
-
-La valeur ``||neopixel:  RGB ||`` demeure la même.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||neopixel:  24 ||`` par ``||neopixel:  1 ||``.
 
 ```blocks
 
-led.enable(false)
 OLED.init(128, 64)
+led.enable(false)
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 
 ```
 
 ## Étape 4
 
-Crée une ``||variables: variable||`` et donne lui le nom ``||variables:Celsius||``.
+Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Celsius||``.
 
-Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||basic: toujours ||``.
+Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Lumen||``.
 
-Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
+Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||loops: chaque 500 ms||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Ajoute le bloc ``||variables: définir Lumen ||`` sous le bloc ``||variables: définir Celsius ||``.
 
 ```blocks
 
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P1)
+let Lumen = 0
+loops.everyInterval(500, function () {
+    Celsius = 0
+    Lumen = 0
 })
 
 ```
 
 ## Étape 5
 
-Modifie le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
+Remplace la valeur ``||variables:0||`` du bloc ``||variables: définir Celsius ||`` par le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
 
 La valeur ``||smarthome:C||`` demeure la même.
 
 Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P2||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
+let Lumen = 0
+loops.everyInterval(500, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    Lumen = 0
 })
-
 
 ```
 
 ## Étape 6
 
-Crée une ``||variables: variable||`` et donne lui le nom ``||variables:Lumen||``.
+Remplace la valeur ``||variables:0||`` du bloc ``||variables: définir Lumen ||`` par le bloc ``||smarthome:value of light||`` (trad. : la valeur de la luminosité).
 
-Ajoute le bloc ``||variables: définir Lumen ||`` sous le bloc ``||variables: définir Celsius ||``.
-
-Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of light intensity||`` (trad. : la valeur du niveau d'intensité lumineuse).
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P3||``.
 
 ```blocks
 
-let Lumen = 0
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
+let Lumen = 0
+loops.everyInterval(500, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
 })
 
 
@@ -165,51 +119,116 @@ basic.forever(function () {
 
 ## Étape 7
 
-Modifie le bloc ``||smarthome:value of light intensity||`` (trad. : la valeur du niveau d'intensité lumineuse).
+Modifie le bloc ``||loops: chaque 500 ms||``.
 
-Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P3||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||loops: 500||`` par ``||loops: 2000||``.
 
 ```blocks
 
-let Lumen = 0
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
+let Lumen = 0
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
 })
-
 
 ```
 
 ## Étape 8
 
-Ajoute le bloc ``||logic:si vrai alors sinon||`` sous le bloc ``||variables: définir Lumen ||``.
+Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Lumen ||``.
 
-```package
+```blocks
 
-dstemps=github:tinkertanker/pxt-smarthome
+let Celsius = 0
+let Lumen = 0
+loops.everyInterval(2000, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+})
+
 
 ```
+
+## Étape 9
+
+Ajoute deux blocs ``||OLED:show string||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
+
+Remplace les valeurs ``||OLED:" "||`` par les blocs ``||text: concaténation ||``.
 
 ```blocks
 
 let Lumen = 0
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
+loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Bonjour" + "Monde")
+    OLED.writeStringNewLine("Bonjour" + "Monde")
+})
+
+```
+
+## Étape 10
+
+Modifie le premier bloc ``||text: concaténation ||``.
+
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
+
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Celsius ||``.
+
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
+
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Celcius||``.
+
+```blocks
+
+let Lumen = 0
+let Celsius = 0
+loops.everyInterval(2000, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+    OLED.writeStringNewLine("Bonjour" + "Monde")
+})
+
+```
+
+## Étape 11
+
+Modifie le deuxième  bloc ``||text: concaténation ||``.
+
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
+
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Lumen ||``.
+
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
+
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Lumen||``.
+
+```blocks
+
+let Lumen = 0
+loops.everyInterval(2000, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
+})
+
+
+```
+## Étape 12
+
+Ajoute le bloc ``||logic:si vrai alors sinon||`` dans le bloc ``||basic: toujours ||``.
+
+```blocks
+
+basic.forever(function () {
     if (true) {
     	
     } else {
@@ -217,364 +236,138 @@ basic.forever(function () {
     }
 })
 
-```
-
-## Étape 9
-
-Modifie le bloc ``||logic:si vrai alors sinon||``.
-
-Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic: et||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-let Lumen = 0
-let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (true && true) {
-    	
-    } else {
-    	
-    }
-})
-
-
-```
-
-## Étape 10
-
-Modifie le bloc ``||logic: et||``.
-
-Remplace l'espace de gauche par le bloc ``||logic:0 > 0||``.
-
-Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
-
-Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:25||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-let Lumen = 0
-let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Celsius > 25 && true) {
-    	
-    } else {
-    	
-    }
-})
-
-
-```
-
-## Étape 11
-
-Modifie le bloc ``||logic: et||``.
-
-Remplace l'espace de droite par le bloc ``||logic:0 < 0||``.
-
-Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Lumen||``.
-
-Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:40||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-let Lumen = 0
-let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Celsius > 25 && Lumen < 40) {
-    	
-    } else {
-    	
-    }
-})
-
-```
-
-
-## Étape 12
-
-Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:  si ||``.
-
-Remplace la valeur ``||neopixel:  rouge ||`` par la valeur ``||neopixel:  noir ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-let Lumen = 0
-let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Celsius > 25 && Lumen < 40) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Black))
-    } else {
-    	
-    }
-})
 
 ```
 
 ## Étape 13
 
-Ajoute le bloc ``||music:  jouer tonalité||`` sous le bloc ``||neopixel:  régler couleur||``.
+Modifie le bloc ``||logic:si vrai alors sinon||``.
 
-Les valeurs ``||music:  Middle C||``, ``||music:  1 temps||`` et ``||music:  jusqu'à la fin||`` demeurent les mêmes.
-
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic: et||``.
 
 ```blocks
 
-let Lumen = 0
-let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Celsius > 25 && Lumen < 40) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Black))
-        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    if (false && false) {
+    	
     } else {
     	
     }
 })
 
-
 ```
-
 ## Étape 14
 
-Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:  sinon ||``.
+Modifie le bloc ``||logic: et||`` de gauche.
 
-Remplace la valeur ``||neopixel:  rouge ||`` par la valeur ``||neopixel:  blanc ||``.
+Remplace l'espace de gauche par le bloc ``||logic:0 > 0||``.
 
-```package
+Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
 
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:20||``.
 
 ```blocks
 
-let Lumen = 0
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Celsius > 25 && Lumen < 40) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Black))
-        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    if (Celsius > 20 && false) {
+    	
     } else {
-        strip.showColor(neopixel.colors(NeoPixelColors.White))
+    	
     }
 })
-
 
 ```
 
 ## Étape 15
 
-Ajoute le bloc ``||OLED: clear OLED ||`` (trad. : effacer l'écran) dans le bloc ``||input:lorsque le bouton A est pressé||``.
+Modifie le bloc ``||logic: et||`` de droite.
 
-```package
+Remplace l'espace de droite par le bloc ``||logic:0 < 0||``.
 
-dstemps=github:tinkertanker/pxt-smarthome
+Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Lumen||``.
 
-```
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:100||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-})
 let Lumen = 0
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Celsius > 25 && Lumen < 40) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Black))
-        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    if (Celsius > 20 && Lumen < 100) {
+    	
     } else {
-        strip.showColor(neopixel.colors(NeoPixelColors.White))
+    	
     }
 })
-
 
 ```
 
 ## Étape 16
 
-Ajoute le bloc ``||OLED: show string ||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED ||`` (trad. : effacer écran).
+Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:  si ||``.
 
-Remplace la valeur ``||OLED: " " ||`` par le mot ``||OLED:Celsius||``. 
-
-Ajoute le bloc ``||OLED: show number ||`` (trad. : montrer le nombre) sous le bloc ``||OLED: show string ||``.
-
-Remplace la valeur ``||OLED: 0 ||`` par le bloc ``||variables:Celsius||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+La valeur ``||neopixel:  rouge ||`` demeure la même.
 
 ```blocks
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
-})
+
 let Lumen = 0
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Celsius > 25 && Lumen < 40) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Black))
-        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    if (Celsius > 20 && Lumen < 100) {
+        strip.showColor(neopixel.colors(NeoPixelColors.Red))
     } else {
-        strip.showColor(neopixel.colors(NeoPixelColors.White))
+    	
     }
 })
-
 
 ```
 
 ## Étape 17
 
-Ajoute le bloc ``||OLED: show string ||`` (trad. : montrer la ligne) sous le bloc ``||OLED: show number ||`` (trad. : montrer le nombre).
+Ajoute le bloc ``||neopixel:  régler couleur||`` dans le bloc ``||logic:  sinon ||``.
 
-Remplace la valeur ``||OLED: " " ||`` par le mot ``||OLED:Lumen||``. 
-
-Ajoute le bloc ``||OLED: show number ||`` (trad. : montrer le nombre) sous le bloc ``||OLED: show string ||``.
-
-Remplace la valeur ``||OLED: 0 ||`` par le bloc ``||variables:Lumen||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||neopixel:  rouge ||`` par ``||neopixel:  noir ||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
-    OLED.writeStringNewLine("Lumen")
-    OLED.writeNumNewLine(Lumen)
-})
 let Lumen = 0
 let Celsius = 0
-led.enable(false)
-OLED.init(128, 64)
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Celsius > 25 && Lumen < 40) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Black))
-        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    if (Celsius > 20 && Lumen < 100) {
+        strip.showColor(neopixel.colors(NeoPixelColors.Red))
     } else {
-        strip.showColor(neopixel.colors(NeoPixelColors.White))
+        strip.showColor(neopixel.colors(NeoPixelColors.Black))
     }
 })
 
-
 ```
+## Étape 18
 
-## Étape 17
-
-Voici la programmation complète du programme.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Voici la programmation complète du tutoriel.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
-    OLED.writeStringNewLine("Lumen")
-    OLED.writeNumNewLine(Lumen)
-})
 let Lumen = 0
 let Celsius = 0
+let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 led.enable(false)
 OLED.init(128, 64)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-basic.forever(function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+loops.everyInterval(2000, function () {
+    Celsius = smarthome.ReadLightIntensity(AnalogPin.P2)
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
-    if (Celsius > 25 && Lumen < 40) {
-        strip.showColor(neopixel.colors(NeoPixelColors.Black))
-        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    OLED.clear()
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
+})
+basic.forever(function () {
+    if (Celsius > 20 && Lumen < 100) {
+        strip.showColor(neopixel.colors(NeoPixelColors.Red))
     } else {
-        strip.showColor(neopixel.colors(NeoPixelColors.White))
+        strip.showColor(neopixel.colors(NeoPixelColors.Black))
     }
 })
-
 
 ```
 

@@ -1,6 +1,6 @@
 # ElecFreaks micro:bit Smart Home Kit
 
-# Tutoriel 6
+# Tutoriel 7
 
 ## @showdialog
 
@@ -126,7 +126,7 @@ Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous l
 ```blocks
 
 let Lumen = 0
-loops.everyInterval(500, function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     OLED.clear()
 })
@@ -142,7 +142,7 @@ Remplace la valeur ``||OLED:" "||`` par le bloc ``||text: concaténation ||``.
 ```blocks
 
 let Lumen = 0
-loops.everyInterval(500, function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     OLED.clear()
     OLED.writeStringNewLine("Bonjour" + "Monde")
@@ -166,7 +166,7 @@ Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Lumen||``.
 ```blocks
 
 let Lumen = 0
-loops.everyInterval(500, function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     OLED.clear()
     OLED.writeStringNewLine("Lumen" + ":" + Lumen)
@@ -268,7 +268,7 @@ let Lumen = 0
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 led.enable(false)
 OLED.init(128, 64)
-loops.everyInterval(500, function () {
+loops.everyInterval(2000, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     OLED.clear()
     OLED.writeStringNewLine("Lumen" + ":" + Lumen)

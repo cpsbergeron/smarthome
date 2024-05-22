@@ -10,8 +10,6 @@ Utilise l'écran OLED, les capteurs, le bouclier d'extension et les câbles.
 
 Ajoute le bloc ``||LED:activer LED||`` dans le bloc ``||basic:au démarrage||``.
 
-Supprime le bloc ``||basic:toujours||``.
-
 La valeur ``||logic:faux||`` du bloc ``||LED:activer LED||`` demeure la même.
 
 Certaines broches (ex. :  P3, P4, P6, etc.) sont utilisées par le micro:bit pour allumer les lumières LEDs.
@@ -32,18 +30,12 @@ led.enable(false)
 
 ## Étape 2
 
-Ajoute le bloc ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran) sous le bloc ``||LED:activer LED||``.
+Ajoute le bloc ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran) sous le bloc ``||LED:activer LED||``
 
 Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
 Les valeurs ``||OLED: 128 ||`` et ``||OLED: 64 ||`` sont les dimensions (en pixels) de l'écran.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
 ```blocks
 
 led.enable(false)
@@ -51,312 +43,266 @@ OLED.init(128, 64)
 
 ```
 
-## Étape 3
+## Étape 3A
 
-Ajoute le bloc ``||music: régler le volume||``  sous le bloc ``||OLED: initialize OLED ||`` (trad. : démarrer l'écran).
+Ajoute le bloc ``||variables:  définir strip ||`` (trad. : bande lumineuse) de l'onglet ``||neopixel:  neopixel ||`` sous le bloc ``||LED:activer LED||``.
 
-Remplace la valeur ``||music: 127 ||`` par la valeur ``||music: 100 ||``.
+Remplace la valeur ``||neopixel:  P0 ||`` par ``||neopixel:  P1 ||``.
 
-Le volume du haut-parleur du bouclier d'extension varie entre 0 et 255.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||neopixel:  24 ||`` par ``||neopixel:  1 ||``.
 
 ```blocks
 
-led.enable(false)
 OLED.init(128, 64)
-music.setVolume(100)
+led.enable(false)
+let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
+
+```
+
+## Étape 3B
+
+Ajoute le bloc ``||music:  régler volume ||`` de l'onglet ``||music:  musique ||`` sous le bloc ``||variables:  définir strip ||``.
+
+Remplace la valeur ``||music:  127 ||`` par ``||music:  255 ||``.
+
+```blocks
+
+OLED.init(128, 64)
+led.enable(false)
+let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
+music.setVolume(255)
 
 ```
 
 ## Étape 4
 
-Ajoute le bloc ``||variables:  définir strip ||`` (trad. : bande lumineuse) de l'onglet ``||neopixel:  neopixel ||`` sous le bloc ``||music: régler le volume||``.
+Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Celsius||``.
 
-Modifie le bloc ``||variables:  définir strip ||``.
+Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Lumen||``.
 
-Remplace la valeur ``||neopixel:  P0 ||`` par ``||neopixel:  P1 ||``.
+Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||loops: chaque 500 ms||``.
 
-Remplace la valeur ``||neopixel:  24 ||`` par  ``||neopixel:  1 ||``.
-
-La valeur ``||neopixel:  RGB ||`` demeure la même.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Ajoute le bloc ``||variables: définir Lumen ||`` sous le bloc ``||variables: définir Celsius ||``.
 
 ```blocks
 
-led.enable(false)
-OLED.init(128, 64)
-music.setVolume(100)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
+let Celsius = 0
+let Lumen = 0
+loops.everyInterval(500, function () {
+    Celsius = 0
+    Lumen = 0
+})
 
 ```
 
 ## Étape 5
 
-Ajoute le bloc ``||neopixel:  régler couleur||`` sous le bloc ``||variables:  définir strip ||``.
+Remplace la valeur ``||variables:0||`` du bloc ``||variables: définir Celsius ||`` par le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
 
-Remplace la valeur ``||neopixel:  rouge ||`` par la valeur ``||neopixel: noir ||``.
+La valeur ``||smarthome:C||`` demeure la même.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P2||``.
 
 ```blocks
 
-led.enable(false)
-OLED.init(128, 64)
-music.setVolume(100)
-let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-strip.showColor(neopixel.colors(NeoPixelColors.Black))
+let Celsius = 0
+let Lumen = 0
+loops.everyInterval(500, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    Lumen = 0
+})
 
 ```
 
 ## Étape 6
 
-Ajoute le bloc ``||loops: chaque 500 ms||``.
+Remplace la valeur ``||variables:0||`` du bloc ``||variables: définir Lumen ||`` par le bloc ``||smarthome:value of light||`` (trad. : la valeur de la luminosité).
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||smarthome:P1||`` par ``||smarthome:P3||``.
 
 ```blocks
 
+let Celsius = 0
+let Lumen = 0
 loops.everyInterval(500, function () {
-	
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
 })
+
 
 ```
 
 ## Étape 7
 
-Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Celsius||``.
+Modifie le bloc ``||loops: chaque 500 ms||``.
 
-Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||loops: chaque 500 ms||``.
-
-Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||loops: 500||`` par ``||loops: 2500||``.
 
 ```blocks
 
 let Celsius = 0
-loops.everyInterval(500, function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P1)
+let Lumen = 0
+loops.everyInterval(2500, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
 })
 
 ```
 
 ## Étape 8
 
-Modifie le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
-
-La valeur ``||smarthome:C||`` demeure la même.
-
-Remplace la valeur ``||smarthome:P1||`` par la valeur ``||smarthome:P2||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-let Celsius = 0
-loops.everyInterval(500, function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-})
-
-```
-
-## Étape 9
-
-Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Lumen||``.
-
-Ajoute le bloc ``||variables: définir Lumen ||`` sous le bloc ``||variables: définir Celsius ||``.
-
-Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of light intensity||`` (trad. : la valeur du niveau d'intensité lumineuse).
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Ajoute le bloc ``||OLED:clear OLED display||`` (trad. : effacer l'écran) sous le bloc ``||variables: définir Lumen ||``.
 
 ```blocks
 
 let Celsius = 0
 let Lumen = 0
-loops.everyInterval(500, function () {
+loops.everyInterval(2500, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+})
+
+
+```
+
+## Étape 9
+
+Ajoute deux blocs ``||OLED:show string||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
+
+Remplace les valeurs ``||OLED:" "||`` par les blocs ``||text: concaténation ||``.
+
+```blocks
+
+let Lumen = 0
+let Celsius = 0
+loops.everyInterval(2500, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Bonjour" + "Monde")
+    OLED.writeStringNewLine("Bonjour" + "Monde")
 })
 
 ```
 
 ## Étape 10
 
-Modifie le bloc ``||smarthome:value of light intensity||`` (trad. : la valeur du niveau d'intensité lumineuse).
+Modifie le premier bloc ``||text: concaténation ||``.
 
-Remplace la valeur ``||smarthome:P1||`` par la valeur ``||smarthome:P3||``.
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
 
-```package
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Celsius ||``.
 
-dstemps=github:tinkertanker/pxt-smarthome
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
 
-```
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Celcius||``.
 
 ```blocks
 
-let Celsius = 0
 let Lumen = 0
-loops.everyInterval(500, function () {
+let Celsius = 0
+loops.everyInterval(2500, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+    OLED.writeStringNewLine("Bonjour" + "Monde")
 })
 
 ```
 
 ## Étape 11
 
-Modifie le bloc ``||loops:chaque 500 ms||``.
+Modifie le deuxième  bloc ``||text: concaténation ||``.
 
-Remplace la valeur ``||loops: 500 ||`` par le bloc ``||math:0 x 0||``.
+Appuie sur le ``||text: + ||`` du bloc ``||text: concétanation ||`` pour ajouter un espace supplémentaire.
 
-Remplace la valeur ``||math:0||`` de gauche par la valeur ``||math:1000||``.
+Remplace la valeur ``||text: Bonjour ||`` par ``||text: Lumen ||``.
 
-Remplace la valeur ``||math:0||`` de droite par la valeur ``||math:5||``.
+Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Lumen||``.
 
 ```blocks
 
-let Celsius = 0
 let Lumen = 0
-loops.everyInterval(1000 * 5, function () {
+loops.everyInterval(2500, function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
 })
 
-```
 
+```
 ## Étape 12
 
-Ajoute le bloc ``||OLED: clear display ||`` (trad. : effacer l'écran) dans le bloc ``||input: lorsque le bouton A est pressé ||``.
-
-Ajoute le bloc ``||OLED: show string ||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear display ||``.
-
-Ajoute le bloc ``||OLED: show number ||`` (trad. : montrer le nombre) sous le bloc ``||OLED: show string ||``.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Ajoute le bloc ``||logic:si||`` dans le bloc ``||basic: toujours ||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("")
-    OLED.writeNumNewLine(0)
+basic.forever(function () {
+    if (true) {
+    	
+    }
 })
 
 ```
 
 ## Étape 13
 
-Remplace la valeur ``||OLED: " " ||`` du bloc ``||OLED: show string ||`` (trad. : montrer la ligne) par le mot ``||OLED: Celsius ||``.
+Modifie le bloc ``||logic:si ||``.
 
-Remplace la valeur ``||OLED: 0 ||`` du bloc ``||OLED: show number ||`` (trad. : montrer nombre) par le bloc ``||variables: Celsius ||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 > 0||``.
 
-```package
+Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
 
-dstemps=github:tinkertanker/pxt-smarthome
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:25||``.
 
-```
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
+basic.forever(function () {
     let Celsius = 0
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
+    if (Celsius > 25) {
+    	
+    }
 })
 
 ```
 
 ## Étape 14
 
-Ajoute le bloc ``||logic: si vrai alors ||`` sous le bloc ``||OLED: show number ||`` (trad. : montrer nombre).
+Ajoute le bloc ``||music: jouer mélodie||`` dans le bloc ``||logic:si ||``.
 
-```package
+Remplace la valeur ``||music: dadadum||`` par une mélodie de ton choix.
 
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||music: en arrière-plan||`` par ``||music: jusqu'à la fin||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    let Celsius = 0
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
-    if (true) {
-    	
+let Celsius = 0
+basic.forever(function () {
+    if (Celsius > 25) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.InBackground)
     }
 })
 
-
 ```
-
 ## Étape 15
 
-Modifie le bloc ``||logic: si vrai alors ||``.
-
-Remplace la valeur ``||logic: vrai ||`` par le bloc ``||logic: 0 < 0 ||``.
-
-Remplace la valeur ``||logic: 0 < 0 ||`` de gauche par le bloc ``||variables: Celsius ||``.
-
-Remplace la valeur ``||logic: 0 < 0 ||`` de droite par la valeur ``||logic: 25 ||``
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Ajoute le bloc ``||logic:si||`` sous le bloc ``||logic: si ||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    let Celsius = 0
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
-    if (Celsius < 25) {
+let Celsius = 0
+basic.forever(function () {
+    if (Celsius > 25) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+    }
+    if (true) {
     	
     }
 })
@@ -365,27 +311,25 @@ input.onButtonPressed(Button.A, function () {
 
 ## Étape 16
 
-Ajoute le bloc ``||music: jouer tonalité ||`` dans le bloc ``||logic: si vrai alors ||``.
+Modifie le deuxième bloc ``||logic:si ||``.
 
-Remplace la valeur ``||music: Middle C ||`` par la valeur ``||music: Low C ||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 < 100||``.
 
-Les autres valeurs du bloc ``||music: jouer tonalité ||`` demeurent les mêmes.
+Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Lumen||``.
 
-```package
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:100||``.
 
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    let Celsius = 0
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
-    if (Celsius < 25) {
-        music.play(music.tonePlayable(131, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+let Celsius = 0
+let Lumen = 0
+basic.forever(function () {
+    if (Celsius > 25) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+    }
+    if (Lumen < 100) {
+    	
     }
 })
 
@@ -393,147 +337,56 @@ input.onButtonPressed(Button.A, function () {
 
 ## Étape 17
 
-Ajoute le bloc ``||OLED: clear display ||`` (trad. : effacer l'écran) dans le bloc ``||input: lorsque le bouton B est pressé ||``.
+Ajoute le bloc ``||music: jouer mélodie||`` dans le bloc ``||logic:si ||``.
 
-Ajoute le bloc ``||OLED: draw loading bar ||`` (trad. : dessiner une barre de progression) sous le bloc ``||OLED: clear display ||``.
+Remplace la valeur ``||music: dadadum||`` par une mélodie de ton choix.
 
-Remplace la valeur ``||OLED: 0 ||`` du bloc ``||OLED: draw loading bar ||`` (trad. : dessiner une barre de progression) par le bloc ``||variables: Lumen ||``.
-
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Remplace la valeur ``||music: en arrière-plan||`` par ``||music: jusqu'à la fin||``.
 
 ```blocks
 
-input.onButtonPressed(Button.B, function () {
-    let Lumen = 0
-    OLED.clear()
-    OLED.drawLoading(Lumen)
+let Celsius = 0
+let Lumen = 0
+basic.forever(function () {
+    if (Celsius > 25) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+    }
+    if (Lumen < 100) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Entertainer), music.PlaybackMode.UntilDone)
+    }
 })
 
 ```
 
 ## Étape 18
 
-Ajoute le bloc ``||logic: si vrai alors ||`` sous le bloc ``||OLED: draw loading bar ||`` (trad. : dessiner une barre de progression).
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
+Voici la programmation complète du tutoriel.
 
 ```blocks
 
-input.onButtonPressed(Button.B, function () {
-    let Lumen = 0
-    OLED.clear()
-    OLED.drawLoading(Lumen)
-    if (true) {
-    	
-    }
-})
-
-```
-
-## Étape 19
-
-Modifie le bloc ``||logic: si vrai alors ||``.
-
-Remplace la valeur ``||logic: vrai ||`` par le bloc ``||logic: 0 > 0 ||``.
-
-Remplace la valeur ``||logic: 0 > 0 ||`` de gauche par le bloc ``||variables: Lumen ||``.
-
-Remplace la valeur ``||logic: 0 > 0 ||`` de droite par la valeur ``||logic: 40 ||``
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-input.onButtonPressed(Button.B, function () {
-    let Lumen = 0
-    OLED.clear()
-    OLED.drawLoading(Lumen)
-    if (Lumen > 40) {
-    	
-    }
-})
-
-
-```
-
-## Étape 20
-
-Ajoute le bloc ``||music: jouer tonalité ||`` dans le bloc ``||logic: si vrai alors ||``.
-
-Remplace la valeur ``||music: Middle C ||`` par la valeur ``||music: High B ||``.
-
-Les autres valeurs du bloc ``||music: jouer tonalité ||`` demeurent les mêmes.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-input.onButtonPressed(Button.B, function () {
-    let Lumen = 0
-    OLED.clear()
-    OLED.drawLoading(Lumen)
-    if (Lumen > 40) {
-        music.play(music.tonePlayable(988, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
-    }
-})
-
-```
-
-## Étape 21
-
-Voici la programmation complète du programme.
-
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
-
-```blocks
-
-input.onButtonPressed(Button.A, function () {
-    OLED.clear()
-    OLED.writeStringNewLine("Celsius")
-    OLED.writeNumNewLine(Celsius)
-    if (Celsius < 25) {
-        music.play(music.tonePlayable(131, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
-    }
-})
-input.onButtonPressed(Button.B, function () {
-    OLED.clear()
-    OLED.drawLoading(Lumen)
-    if (Lumen > 40) {
-        music.play(music.tonePlayable(988, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
-    }
-})
 let Lumen = 0
 let Celsius = 0
+OLED.init(128, 64)
 led.enable(false)
 OLED.init(128, 64)
-music.setVolume(100)
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
-strip.showColor(neopixel.colors(NeoPixelColors.Black))
-loops.everyInterval(1000 * 5, function () {
-    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+music.setVolume(255)
+loops.everyInterval(500, function () {
+    Celsius = smarthome.ReadLightIntensity(AnalogPin.P2)
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
 })
+basic.forever(function () {
+    if (Celsius > 20) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+    }
+    if (Lumen < 100) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Entertainer), music.PlaybackMode.InBackground)
+    }
+})
+
 
 ```
 

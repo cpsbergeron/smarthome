@@ -15,6 +15,12 @@ Supprime le bloc ``||basic:toujours||``.
 
 Ajoute le bloc ``|| pins: régler position servo ||`` dans le bloc ``||basic:au démarrage||``.
 
+```package
+
+dstemps=github:tinkertanker/pxt-smarthome
+
+```
+
 ```blocks
 
 pins.servoWritePin(AnalogPin.P0, 180)
@@ -37,91 +43,71 @@ pins.servoWritePin(AnalogPin.P8, 0)
 
 ## Étape 4
 
-Ajoute le bloc pause ``|| basic: pause (ms) ||`` dans le bloc ``||input:lorsque le bouton A est pressé||``.
+Ajoute le bloc ``||smarthome:setup crash sensor||`` (trad. : paramétrer le capteur d'impact) sous le bloc ``|| pins: régler position servo ||``.
 
-La valeur ``|| basic: 100 ||`` du bloc ``|| basic: pause (ms) ||`` demeure la même.
-
-Ajoute le bloc ``|| pins: régler position servo ||``  sous le bloc  ``|| basic: pause (ms) ||``.
+Remplace la valeur ``||smarthome:P0||`` par ``||smarthome:P5||``.
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    basic.pause(100)
-    pins.servoWritePin(AnalogPin.P0, 180)
-})
+pins.servoWritePin(AnalogPin.P8, 0)
+smarthome.crashSensorSetup(DigitalPin.P5)
 
 ```
 
 ## Étape 5
 
-Modifie le bloc ``|| pins: régler position servo ||``.
+Ajoute le bloc ``||logic:si vrai alors||`` dans le bloc ``|| basic: toujours ||``.
 
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P8 ||``.
-
-Remplace la valeur ``|| pins: 180 ||`` par ``|| pins : 90 ||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||smarthome:crash sensor pressed||`` (trad. : capteur d'impact pressé).
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    basic.pause(100)
-    pins.servoWritePin(AnalogPin.P8, 90)
+basic.forever(function () {
+    if (smarthome.crashSensor()) {
+    	
+    }
 })
 
 ```
 
 ## Étape 6
 
-Ajoute le bloc pause ``|| basic: pause (ms) ||`` dans le bloc ``||input:lorsque le bouton B est pressé||``.
+Ajoute le bloc ``|| pins: régler position servo ||`` sous le bloc ``||smarthome:crash sensor pressed||`` (trad. : capteur d'impact pressé).
 
-La valeur ``|| basic: 100 ||`` du bloc ``|| basic: pause (ms) ||`` demeure la même.
+Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P8 ||``.
 
-Ajoute le bloc ``|| pins: régler position servo ||``  sous le bloc  ``|| basic: pause (ms) ||``.
+La la valeur ``|| pins: 180 ||`` demeure la même.
 
 ```blocks
 
-input.onButtonPressed(Button.B, function () {
-    basic.pause(100)
-    pins.servoWritePin(AnalogPin.P0, 180)
+basic.forever(function () {
+    if (smarthome.crashSensor()) {
+        pins.servoWritePin(AnalogPin.P8, 180)
+    }
 })
 
 ```
 
 ## Étape 7
 
-Modifie le bloc ``|| pins: régler position servo ||``.
+Ajoute le bloc ``|| basic: pause ||`` sous le bloc ``|| pins: régler position servo ||``.
 
-Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P8 ||``.
+Remplace la valeur ``|| basic: 100 ||`` par ``|| basic: 1000 ||``.
 
-La valeur ``|| pins: 180 ||`` demeure la même.
 ```blocks
 
-input.onButtonPressed(Button.B, function () {
-    basic.pause(100)
-    pins.servoWritePin(AnalogPin.P8, 180)
+basic.forever(function () {
+    if (smarthome.crashSensor()) {
+        pins.servoWritePin(AnalogPin.P8, 180)
+        basic.pause(1000)
+    }
 })
 
 ```
 
 ## Étape 8
 
-Ajoute le bloc pause ``|| basic: pause (ms) ||`` dans le bloc ``||input:lorsque le bouton A+B est pressé||``.
-
-La valeur ``|| basic: 100 ||`` du bloc ``|| basic: pause (ms) ||`` demeure la même.
-
-Ajoute le bloc ``|| pins: régler position servo ||``  sous le bloc  ``|| basic: pause (ms) ||``.
-
-```blocks
-
-input.onButtonPressed(Button.AB, function () {
-    basic.pause(100)
-    pins.servoWritePin(AnalogPin.P0, 180)
-})
-
-```
-
-## Étape 9
-
-Modifie le bloc ``|| pins: régler position servo ||``.
+Ajoute le bloc ``|| pins: régler position servo ||`` sous le bloc ``|| basic: pause ||``.
 
 Remplace la broche ``|| pins: P0 ||`` par ``|| pins : P8 ||``.
 
@@ -129,38 +115,33 @@ Remplace la valeur ``|| pins: 180 ||`` par ``|| pins : 0 ||``.
 
 ```blocks
 
-input.onButtonPressed(Button.AB, function () {
-    basic.pause(100)
-    pins.servoWritePin(AnalogPin.P8, 0)
+basic.forever(function () {
+    if (smarthome.crashSensor()) {
+        pins.servoWritePin(AnalogPin.P8, 180)
+        basic.pause(1000)
+        pins.servoWritePin(AnalogPin.P8, 0)
+    }
 })
 
 ```
 
-## Étape 10
+## Étape 9
 
 Voici la programmation complète du programme.
 
-```package
-
-dstemps=github:tinkertanker/pxt-smarthome
-
-```
 
 ```blocks
 
-input.onButtonPressed(Button.A, function () {
-    basic.pause(100)
-    pins.servoWritePin(AnalogPin.P8, 90)
-})
-input.onButtonPressed(Button.AB, function () {
-    basic.pause(100)
-    pins.servoWritePin(AnalogPin.P8, 0)
-})
-input.onButtonPressed(Button.B, function () {
-    basic.pause(100)
-    pins.servoWritePin(AnalogPin.P8, 180)
-})
 pins.servoWritePin(AnalogPin.P8, 0)
+smarthome.crashSensorSetup(DigitalPin.P5)
+basic.forever(function () {
+    if (smarthome.crashSensor()) {
+        pins.servoWritePin(AnalogPin.P8, 180)
+        basic.pause(1000)
+        pins.servoWritePin(AnalogPin.P8, 0)
+    }
+})
+
 
 ```
 
