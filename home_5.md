@@ -228,10 +228,14 @@ Ajoute le bloc ``||neopixel: régler couleur ||`` dans le bloc ``||basic: toujou
 
 Choisis une couleur.
 
+
 ```blocks
+
+let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
     strip.showColor(neopixel.colors(NeoPixelColors.Red))
 })
+
 
 ```
 
