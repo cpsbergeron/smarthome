@@ -45,7 +45,7 @@ OLED.init(128, 64)
 
 ## Étape 3A
 
-Ajoute le bloc ``||variables:  définir strip ||`` (trad. : bande lumineuse) de l'onglet ``||neopixel:  neopixel ||`` sous le bloc ``||LED:activer LED||``.
+Ajoute le bloc ``||variables:  définir strip ||`` (trad. : bande lumineuse) de l'onglet ``||neopixel:  neopixel ||`` sous le bloc ``||OLED: initialize OLED ||``.
 
 Remplace la valeur ``||neopixel:  P0 ||`` par ``||neopixel:  P1 ||``.
 

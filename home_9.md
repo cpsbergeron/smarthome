@@ -287,14 +287,14 @@ Remplace l'espace de droite par le bloc ``||logic:0 < 0||``.
 
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Lumen||``.
 
-Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:100||``.
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:60||``.
 
 ```blocks
 
 let Lumen = 0
 let Celsius = 0
 basic.forever(function () {
-    if (Celsius > 20 || Lumen < 100) {
+    if (Celsius > 20 || Lumen < 60) {
     	
     } else {
     	
@@ -315,7 +315,7 @@ let Lumen = 0
 let Celsius = 0
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
-    if (Celsius > 20 || Lumen < 100) {
+    if (Celsius > 20 || Lumen < 60) {
         strip.showColor(neopixel.colors(NeoPixelColors.Red))
     } else {
     	
@@ -336,7 +336,7 @@ let Lumen = 0
 let Celsius = 0
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
-    if (Celsius > 20 || Lumen < 100) {
+    if (Celsius > 20 || Lumen < 60) {
         strip.showColor(neopixel.colors(NeoPixelColors.Red))
     } else {
         strip.showColor(neopixel.colors(NeoPixelColors.Black))
@@ -362,7 +362,7 @@ loops.everyInterval(2000, function () {
     OLED.writeStringNewLine("Lumen" + ":" + Lumen)
 })
 basic.forever(function () {
-    if (Celsius > 20 || Lumen < 100) {
+    if (Celsius > 20 || Lumen < 60) {
         strip.showColor(neopixel.colors(NeoPixelColors.Red))
     } else {
         strip.showColor(neopixel.colors(NeoPixelColors.Black))
