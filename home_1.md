@@ -132,7 +132,6 @@ basic.forever(function () {
     basic.pause(2000)
 })
 
-
 ```
 
 ## @showdialog 
