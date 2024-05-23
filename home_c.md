@@ -29,6 +29,10 @@ OLED.init(128, 64)
 OLED.writeStringNewLine("Bonjour" + "Monde")
 strip.showColor(neopixel.colors(NeoPixelColors.Red))
 basic.pause(0 * 0)
+music.setVolume(127)
+smarthome.crashSensorSetup(DigitalPin.P0)
+pins.digitalWritePin(DigitalPin.P0, 0)
+pins.servoWritePin(AnalogPin.P0, 180)
 loops.everyInterval(500, function () {
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P1)
@@ -36,9 +40,13 @@ loops.everyInterval(500, function () {
 })
 basic.forever(function () {
     if (0 < 0) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.InBackground)
+    }
+    if (smarthome.crashSensor()) {
     	
     }
 })
+
 
 ```
 

@@ -30,7 +30,8 @@
         "home_b.md",
         "tutorial-info-cache.json",
         "home_celsius.md",
-        "home_lum.md"
+        "home_lum.md",
+        "home_c.md"
     ],
     "testFiles": [
         "test.ts"
