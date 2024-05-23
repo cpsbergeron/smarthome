@@ -7,7 +7,7 @@
 Utilise l'écran OLED, les capteurs, le bouclier d'extension et les câbles.
 
 
-## Étape 1
+## Étape 11
 
 Ajoute le bloc ``|| pins: régler position servo ||`` dans le bloc ``||basic:au démarrage||``.
 
@@ -88,14 +88,14 @@ basic.forever(function () {
 
 Ajoute le bloc ``|| basic: pause ||`` sous le bloc ``|| pins: régler position servo ||``.
 
-Remplace la valeur ``|| basic: 100 ||`` par ``|| basic: 1000 ||``.
+Remplace la valeur ``|| basic: 100 ||`` par ``|| basic: 2500 ||``.
 
 ```blocks
 
 basic.forever(function () {
     if (smarthome.crashSensor()) {
         pins.servoWritePin(AnalogPin.P8, 180)
-        basic.pause(1000)
+        basic.pause(2500)
     }
 })
 
@@ -114,7 +114,7 @@ Remplace la valeur ``|| pins: 180 ||`` par ``|| pins : 0 ||``.
 basic.forever(function () {
     if (smarthome.crashSensor()) {
         pins.servoWritePin(AnalogPin.P8, 180)
-        basic.pause(1000)
+        basic.pause(2500)
         pins.servoWritePin(AnalogPin.P8, 0)
     }
 })
@@ -133,7 +133,7 @@ smarthome.crashSensorSetup(DigitalPin.P5)
 basic.forever(function () {
     if (smarthome.crashSensor()) {
         pins.servoWritePin(AnalogPin.P8, 180)
-        basic.pause(1000)
+        basic.pause(2500)
         pins.servoWritePin(AnalogPin.P8, 0)
     }
 })
