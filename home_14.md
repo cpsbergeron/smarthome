@@ -177,14 +177,14 @@ Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 < 0||``.
 
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Lumen||``.
 
-Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:100||``.
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:60||``.
 
 
 ```blocks
 
 let Lumen = 0
 basic.forever(function () {
-    if (Lumen < 100) {
+    if (Lumen < 60) {
     	
     } else {
     	
@@ -205,7 +205,7 @@ La valeur ``|| pins: 180 ||`` demeure la même.
 
 let Lumen = 0
 basic.forever(function () {
-    if (Lumen < 100) {
+    if (Lumen < 60) {
         pins.servoWritePin(AnalogPin.P8, 180)
     } else {
     	
@@ -226,7 +226,7 @@ Remplace la valeur ``|| pins: 180 ||`` par ``|| pins: 0 ||``.
 
 let Lumen = 0
 basic.forever(function () {
-    if (Lumen < 100) {
+    if (Lumen < 60) {
         pins.servoWritePin(AnalogPin.P8, 180)
     } else {
         pins.servoWritePin(AnalogPin.P8, 0)
@@ -251,7 +251,7 @@ loops.everyInterval(2000, function () {
     OLED.writeStringNewLine("Lumen" + ":" + Lumen)
 })
 basic.forever(function () {
-    if (Lumen < 100) {
+    if (Lumen < 60) {
         pins.servoWritePin(AnalogPin.P8, 180)
     } else {
         pins.servoWritePin(AnalogPin.P8, 0)
