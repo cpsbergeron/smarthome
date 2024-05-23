@@ -9,10 +9,6 @@ Utilise l'écran OLED, les capteurs, le bouclier d'extension et les câbles.
 
 ## Étape 1
 
-Supprime le bloc ``||basic:toujours||``.
-
-## Étape 2
-
 Ajoute le bloc ``|| pins: régler position servo ||`` dans le bloc ``||basic:au démarrage||``.
 
 ```package
@@ -27,7 +23,7 @@ pins.servoWritePin(AnalogPin.P0, 180)
 
 ```
 
-## Étape 3
+## Étape 2
 
 Modifie le bloc ``|| pins: régler position servo ||``.
 
@@ -41,7 +37,7 @@ pins.servoWritePin(AnalogPin.P8, 0)
 
 ```
 
-## Étape 4
+## Étape 3
 
 Ajoute le bloc ``||smarthome:setup crash sensor||`` (trad. : paramétrer le capteur d'impact) sous le bloc ``|| pins: régler position servo ||``.
 
@@ -54,7 +50,7 @@ smarthome.crashSensorSetup(DigitalPin.P5)
 
 ```
 
-## Étape 5
+## Étape 4
 
 Ajoute le bloc ``||logic:si vrai alors||`` dans le bloc ``|| basic: toujours ||``.
 
@@ -70,7 +66,7 @@ basic.forever(function () {
 
 ```
 
-## Étape 6
+## Étape 5
 
 Ajoute le bloc ``|| pins: régler position servo ||`` sous le bloc ``||smarthome:crash sensor pressed||`` (trad. : capteur d'impact pressé).
 
@@ -88,7 +84,7 @@ basic.forever(function () {
 
 ```
 
-## Étape 7
+## Étape 6
 
 Ajoute le bloc ``|| basic: pause ||`` sous le bloc ``|| pins: régler position servo ||``.
 
@@ -105,7 +101,7 @@ basic.forever(function () {
 
 ```
 
-## Étape 8
+## Étape 7
 
 Ajoute le bloc ``|| pins: régler position servo ||`` sous le bloc ``|| basic: pause ||``.
 
@@ -125,7 +121,7 @@ basic.forever(function () {
 
 ```
 
-## Étape 9
+## Étape 8
 
 Voici la programmation complète du programme.
 
