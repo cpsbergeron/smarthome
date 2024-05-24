@@ -36,7 +36,6 @@ Les valeurs du bloc ``||OLED: initialize OLED ||`` demeurent les mêmes.
 
 Les valeurs ``||OLED: 128 ||`` et ``||OLED: 64 ||`` sont les dimensions (en pixels) de l'écran.
 
-
 ```blocks
 
 led.enable(false)
@@ -55,7 +54,6 @@ Remplace la valeur ``||neopixel:  P0 ||`` par ``||neopixel:  P1 ||``.
 Remplace la valeur ``||neopixel:  24 ||`` par  ``||neopixel:  1 ||``.
 
 La valeur ``||neopixel:  RGB ||`` demeure la même.
-
 
 ```blocks
 
@@ -79,7 +77,6 @@ OLED.init(128, 64)
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 strip.showColor(neopixel.colors(NeoPixelColors.Black))
 
-
 ```
 
 ## Étape 5
@@ -89,7 +86,6 @@ Crée une ``||variables: variable||`` et donne-lui le nom ``||variables:Celsius|
 Ajoute le bloc ``||variables: définir Celsius ||`` dans le bloc ``||basic: toujours ||``.
 
 Remplace la valeur ``||variables:0||`` par le bloc ``||smarthome:value of temperature||`` (trad. : la valeur de la température).
-
 
 ```blocks
 
@@ -129,7 +125,6 @@ basic.forever(function () {
 
 Ajoute le bloc ``||logic:si vrai alors ||`` sous le bloc ``||variables: définir Celsius ||``.
 
-
 ```blocks
 
 let Celsius = 0
@@ -140,7 +135,7 @@ strip.showColor(neopixel.colors(NeoPixelColors.Black))
 basic.forever(function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     if (true) {
-    	
+        
     }
 })
 
@@ -166,7 +161,7 @@ strip.showColor(neopixel.colors(NeoPixelColors.Black))
 basic.forever(function () {
     Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
     if (Celsius <= 21) {
-    	
+        
     }
 })
 
@@ -192,7 +187,6 @@ basic.forever(function () {
     }
 })
 
-
 ```
 
 ## Étape 10
@@ -212,10 +206,9 @@ basic.forever(function () {
         strip.showColor(neopixel.colors(NeoPixelColors.Yellow))
     }
     if (true) {
-    	
+        
     }
 })
-
 
 ```
 
@@ -242,10 +235,9 @@ basic.forever(function () {
         strip.showColor(neopixel.colors(NeoPixelColors.Yellow))
     }
     if (0 >= 0 && 0 <= 0) {
-    	
+        
     }
 })
-
 
 ```
 
@@ -270,10 +262,9 @@ basic.forever(function () {
         strip.showColor(neopixel.colors(NeoPixelColors.Yellow))
     }
     if (Celsius >= 22 && 0 <= 0) {
-    	
+        
     }
 })
-
 
 ```
 
@@ -298,7 +289,7 @@ basic.forever(function () {
         strip.showColor(neopixel.colors(NeoPixelColors.Yellow))
     }
     if (Celsius >= 22 && Celsius <= 25) {
-    	
+        
     }
 })
 
@@ -350,7 +341,7 @@ if (Celsius <= 21) {
     }
 })
     if (true) {
-    	
+        
     }
 })
 
@@ -382,10 +373,9 @@ if (Celsius <= 21) {
         strip.showColor(neopixel.colors(NeoPixelColors.Orange))
     }
     if (Celsius >= 26) {
-    	
+        
     }
 })
-
 
 ```
 
@@ -417,7 +407,6 @@ if (Celsius <= 21) {
 
 ```
 
-
 ## Étape 18
 
 Glisse le bloc ``||loops: chaque 500 ms||`` dans la zone de programmation.
@@ -427,7 +416,7 @@ Remplace la valeur ``||loops: 500||`` par ``||loops: 2000||``.
 ```blocks
 
 loops.everyInterval(2000, function () {
-	
+    
 })
 
 ```
@@ -471,7 +460,6 @@ Remplace la valeur ``||text: Monde ||`` par ``||text: : ||``.
 
 Remplace la valeur ``||text: " " ||`` par le bloc ``||variables: Celcius||``.
 
-
 ```blocks
 
 let Celsius = 0
@@ -479,7 +467,6 @@ loops.everyInterval(2000, function () {
     OLED.clear()
     OLED.writeStringNewLine("Celsius" + ":" + Celsius)
 })
-
 
 ```
 
@@ -511,7 +498,6 @@ basic.forever(function () {
     }
 })
 
-
 ```
 
 ## @showdialog 
@@ -519,3 +505,4 @@ basic.forever(function () {
 Félicitations! Tu as terminé la programmation. Réalise maintenant les branchements.
 
 Pour tester le circuit électrique, télécharge la programmation dans le micro:bit.
+

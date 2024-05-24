@@ -25,13 +25,13 @@
         "home_12.md",
         "home_13.md",
         "home_14.md",
-        "home_15.md",
         "home_a.md",
         "home_b.md",
         "tutorial-info-cache.json",
         "home_celsius.md",
         "home_lum.md",
-        "home_c.md"
+        "home_c.md",
+        "home_15.md"
     ],
     "testFiles": [
         "test.ts"
