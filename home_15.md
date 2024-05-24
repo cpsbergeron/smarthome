@@ -145,7 +145,7 @@ basic.forever(function () {
 
 Modifie le bloc ``||logic:si vrai alors||``.
 
-Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 <= 0||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 ≤ 0||``.
 
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
 
@@ -218,9 +218,9 @@ Modifie le bloc ``||logic:si vrai alors||``.
 
 Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:et||``.
 
-Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||logic:0 >= 0||``.
+Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||logic:0 ≥ 0||``.
 
-Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:0 <= 0||``.
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:0 ≤ 0||``.
 
 ```blocks
 
@@ -243,7 +243,7 @@ basic.forever(function () {
 
 ## Étape 12
 
-Modifie le bloc ``||logic:0 > 0||``.
+Modifie le bloc ``||logic:0 ≥ 0||``.
 
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
 
@@ -270,7 +270,7 @@ basic.forever(function () {
 
 ## Étape 13
 
-Modifie le bloc ``||logic:0 < 0||``.
+Modifie le bloc ``||logic:0 ≤ 0||``.
 
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
 
@@ -351,7 +351,7 @@ if (Celsius <= 21) {
 
 Modifie le bloc ``||logic:si vrai alors||``.
 
-Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 >= 0||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 ≥ 0||``.
 
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Celsius||``.
 
