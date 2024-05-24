@@ -246,7 +246,7 @@ let Lumen = 0
 led.enable(false)
 OLED.init(128, 64)
 loops.everyInterval(2000, function () {
-    Lumen = smarthome.ReadLightIntensity(AnalogPin.P1)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     OLED.clear()
     OLED.writeStringNewLine("Lumen" + ":" + Lumen)
 })
