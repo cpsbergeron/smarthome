@@ -313,11 +313,11 @@ basic.forever(function () {
 
 Modifie le deuxième bloc ``||logic:si ||``.
 
-Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 < 100||``.
+Remplace la valeur ``||logic:vrai||`` par le bloc ``||logic:0 < 60||``.
 
 Remplace la valeur ``||logic:0||`` de gauche par le bloc ``||variables:Lumen||``.
 
-Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:100||``.
+Remplace la valeur ``||logic:0||`` de droite par la valeur ``||logic:60||``.
 
 
 ```blocks
@@ -328,7 +328,7 @@ basic.forever(function () {
     if (Celsius > 25) {
         music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
     }
-    if (Lumen < 100) {
+    if (Lumen < 60) {
     	
     }
 })
@@ -351,7 +351,7 @@ basic.forever(function () {
     if (Celsius > 25) {
         music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
     }
-    if (Lumen < 100) {
+    if (Lumen < 60) {
         music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Entertainer), music.PlaybackMode.UntilDone)
     }
 })
@@ -382,7 +382,7 @@ basic.forever(function () {
     if (Celsius > 20) {
         music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
     }
-    if (Lumen < 100) {
+    if (Lumen < 60) {
         music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Entertainer), music.PlaybackMode.InBackground)
     }
 })

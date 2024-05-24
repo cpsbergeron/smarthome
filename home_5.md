@@ -151,7 +151,7 @@ loops.everyInterval(2000, function () {
 
 ```
 
-## Étape 7
+## Étape 9
 
 Ajoute deux blocs ``||OLED:show string||`` (trad. : montrer la ligne) sous le bloc ``||OLED: clear OLED display ||`` (trad. : effacer l'écran).
 
@@ -171,7 +171,7 @@ loops.everyInterval(2000, function () {
 
 ```
 
-## Étape 8
+## Étape 10
 
 Modifie le premier bloc ``||text: concaténation ||``.
 
@@ -197,7 +197,7 @@ loops.everyInterval(2000, function () {
 
 ```
 
-## Étape 9
+## Étape 11
 
 Modifie le deuxième  bloc ``||text: concaténation ||``.
 
@@ -222,7 +222,7 @@ loops.everyInterval(2000, function () {
 
 
 ```
-## Étape 10
+## Étape 12
 
 Ajoute le bloc ``||neopixel: régler couleur ||`` dans le bloc ``||basic: toujours ||``.
 
@@ -234,6 +234,27 @@ Choisis une couleur.
 let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
 basic.forever(function () {
     strip.showColor(neopixel.colors(NeoPixelColors.Red))
+})
+
+
+```
+## Étape 13
+
+Voici la programmation complète du programme.
+
+```blocks
+
+let Lumen = 0
+let Celsius = 0
+OLED.init(128, 64)
+led.enable(false)
+let strip = neopixel.create(DigitalPin.P1, 1, NeoPixelMode.RGB)
+loops.everyInterval(2000, function () {
+    Celsius = smarthome.ReadTemperature(TMP36Type.TMP36_temperature_C, AnalogPin.P2)
+    Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
+    OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
+    OLED.writeStringNewLine("Lumen" + ":" + Lumen)
 })
 
 

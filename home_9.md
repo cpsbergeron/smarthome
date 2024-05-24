@@ -359,6 +359,7 @@ loops.everyInterval(2000, function () {
     Celsius = smarthome.ReadLightIntensity(AnalogPin.P2)
     Lumen = smarthome.ReadLightIntensity(AnalogPin.P3)
     OLED.clear()
+    OLED.writeStringNewLine("Celsius" + ":" + Celsius)
     OLED.writeStringNewLine("Lumen" + ":" + Lumen)
 })
 basic.forever(function () {
